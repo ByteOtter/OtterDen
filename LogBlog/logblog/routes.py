@@ -33,7 +33,7 @@ def about():
 
 @app.route("/register", methods = ['GET', 'POST'])
 def register():
-    if current_user.is_authenticated():
+    if current_user.is_authenticated:
         return redirect(url_for('home'))
 
     form = RegistrationForm()
