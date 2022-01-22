@@ -39,14 +39,21 @@ def register():
     #displays flash message when form validates successfully & redirects user to home page
     #TODO: This does not redirect the User to the home page yet! Fix it!
     if form.validate_on_submit():
-        flash(f'Account created for {form.username.data}!', 'success')
+        flash(f'Your Account has been created! Welcome, {form.username.data}!', 'success')
         return redirect(url_for('home'))
     return render_template('register.html', title = 'Register', form = form)
 
 
-@app.route("/login")
+@app.route("/login", methods = ['GET', 'POST'])
 def login():
     form = LoginForm()
+    #temporary code to simulate login!
+    if form.validate_on_submit():
+        if form.email.data == 'admin@logBlog.com' and form.password.data == 'password':
+            flash(f'Welcome,  {form.email.data}', 'success')
+            return redirect(url_for('home'))
+        else:
+            flash('Login unsuccessful. Please check your email and password.', 'danger')
     return render_template('login.html', title = 'Login', form = form)
 
 
