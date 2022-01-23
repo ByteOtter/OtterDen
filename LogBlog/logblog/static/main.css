@@ -73,6 +73,7 @@ a.article-title:hover {
   width: 125px;
   margin-right: 20px;
   margin-bottom: 16px;
+  object-fit:cover;
 }
 
 .account-heading {
