@@ -1,8 +1,8 @@
-from flask import render_template, url_for, flash, redirect
+from flask import render_template, url_for, flash, redirect, request
 from logblog import app, db, bcrypt
 from logblog.forms import RegistrationForm, LoginForm
 from logblog.models import User, Post
-from flask_login import login_user, logout_user, current_user
+from flask_login import login_user, logout_user, current_user, login_required
 
 posts = [
     {
@@ -61,7 +61,8 @@ def login():
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
             flash(f'Welcome, {user.username}!', 'success')
-            return redirect(url_for('home'))
+            next_page = request.args.get('next')
+            return redirect(next_page) if next_page else redirect(url_for('home')) #redirect to the next page if it exists, else redirect to home.
         else:
             flash('Login unsuccessful. Please check your email and password.', 'danger')
     return render_template('login.html', title = 'Login', form = form)
@@ -70,5 +71,12 @@ def login():
 @app.route("/logout")
 def logout():
     logout_user()
-    flash('Goodbye, See you next time!')
+    flash('Goodbye, See you next time!', 'success')
     return redirect(url_for('home'))
+
+
+@app.route("/account")
+#require login to access account page
+@login_required
+def account():
+    return render_template('account.html', title = 'My Account')
