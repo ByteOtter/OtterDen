@@ -1,4 +1,8 @@
 LogBlog/logblog/logBlogDEV.db
 
 LogBlog/logblog/static/profile_pictures/*
+!LogBlog/
+!LogBlog/logblog/
+!LogBlog/logblog/static
+!LogBlog/logblog/static/profile_pictures
 !LogBlog/logblog/static/profile_pictures/default.jpg
