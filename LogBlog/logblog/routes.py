@@ -127,38 +127,43 @@ def account():
 def new_post():
     form = PostForm()
     post = Post()
+    posted_picture = None
     if form.validate_on_submit():
-        print(form.picture.__dict__)
         if form.picture.data:
             posted_picture = save_posted_picture(form.picture.data)
-            print("Heureka")
-        post = Post(title = form.title.data, content = form.content.data, author = current_user, picture = form.picture.data)
+        post = Post(title = form.title.data, content = form.content.data, author = current_user, picture = posted_picture)
         db.session.add(post)
         db.session.commit()
         flash('Your post has been shared!', 'success')
         return redirect(url_for('home'))
-    return render_template('create_new_post.html', title = 'New Post', form=form, picture = post.picture, legend = 'Create new post')
+    return render_template('create_new_post.html', title = 'New Post', form=form, legend = 'Create new post')
 
 
 @app.route("/post/<int:post_id>")
 def post(post_id):
     #get post with post_id or throw 404
     post = Post.query.get_or_404(post_id)
-    return render_template('post.html', title = post.title, post = post, picture = post.picture)
+    if post.picture != None:
+        image_file = url_for('static', filename = 'posted_pictures/' + post.picture)
+        return render_template('post.html', title = post.title, post = post, picture = post.picture)
+    else: return render_template('post.html', title = post.title, post = post)
 
 
 @app.route("/post/<int:post_id>/edit", methods = ['GET', 'POST'])
 @login_required
 def edit_post(post_id):
+    form = PostForm()
     post = Post.query.get_or_404(post_id)
     #only user who wrote that post should be able to update
     if post.author != current_user:
         abort(403) #forbidden
-    form = PostForm()
+    posted_picture = None
     if form.validate_on_submit():
+        if form.picture.data:
+            posted_picture = save_posted_picture(form.picture.data)
         post.title = form.title.data
         post.content = form.content.data
-        post.picture = form.picture.data
+        post.picture = posted_picture
         db.session.commit()
         flash('Your post has been updated!', 'success')
         return redirect(url_for('post', post_id = post.id))

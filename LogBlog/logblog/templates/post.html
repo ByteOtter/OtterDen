@@ -15,9 +15,11 @@
       </div>
       <h2 class="article-title">{{ post.title }}</h2>
       <p class="article-content">{{ post.content }}</p>
+      {% if post.picture %}
       <div class="post-img">
-        <img class="post-img" src="{{ post.picture }}"></img>
+        <img class="post-img" src="{{ url_for('static', filename='posted_pictures/' + post.picture) }}"></img>
       </div>
+      {% endif %}
     </div>
   </article>
   <!-- Confirmation Pop-up. -->
