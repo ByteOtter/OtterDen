@@ -32,6 +32,17 @@
                         {{ form.content(class = "form-control form-control-lg") }}
                     {% endif %}
                 </div>
+                {% if form.picture %}
+                <div class = "form-group">
+                    {{ form.picture.label() }}
+                    {{ form.picture(class = "form-control-file") }}
+                    {% if form.picture.errors %}
+                        {% for error in form.media.errors %}
+                            <span class "text-danger">{{ error }}</span></br>
+                        {% endfor %}
+                    {% endif %}
+                {% endif %}
+                </div>
             </fieldset>
             <div class = "form-group">
                 {{ form.submit(class = "btn btn-outline-info") }}

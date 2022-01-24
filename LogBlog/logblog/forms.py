@@ -36,7 +36,7 @@ class LoginForm(FlaskForm):
 class UpdateAccountInfoForm(FlaskForm):
     username = StringField('Username', validators = [DataRequired(), Length(min = 5, max = 20)])
     email = StringField('Email', validators = [DataRequired(), Email()])
-    picture = FileField('Update Avatar', validators = [FileAllowed(['jpg', 'png', 'webp', 'gif'])])
+    picture = FileField('Update Avatar', validators = [FileAllowed(['jpg', 'jpeg', 'png', 'webp', 'gif'])])
     submit = SubmitField('Update your info!')
     
     #check if username already in use
@@ -57,4 +57,5 @@ class UpdateAccountInfoForm(FlaskForm):
 class PostForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     content = TextAreaField('Content', validators=[DataRequired()])
+    picture = FileField('Add media', validators = [FileAllowed(['jpg', 'jpeg', 'png', 'svg', 'webp', 'gif', 'bmp'])])
     submit = SubmitField('Post')
