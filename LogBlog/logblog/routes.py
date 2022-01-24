@@ -1,31 +1,17 @@
 import os
 import secrets
 from PIL import Image
-from flask import render_template, url_for, flash, redirect, request
+from flask import render_template, url_for, flash, redirect, request, abort
 from logblog import app, db, bcrypt
-from logblog.forms import RegistrationForm, LoginForm, UpdateAccountInfoForm
+from logblog.forms import RegistrationForm, LoginForm, UpdateAccountInfoForm, PostForm
 from logblog.models import User, Post
 from flask_login import login_user, logout_user, current_user, login_required
 
-posts = [
-    {
-        'author': 'Hans Ranz',
-        'title': 'Example Post 1',
-        'content': 'Hans Ranz Kanns!',
-        'date_posted': 'January 1, 2022'
-    },
-    {
-        'author': 'Peter Ruprecht',
-        'title': 'Example Post 2',
-        'content': 'Get the hell outta here!',
-        'date_posted': 'January 2, 2022'
-    }
-    
-]
 
 @app.route("/")
 @app.route("/home")
 def home():
+    posts = Post.query.all()
     return render_template('home.html', posts = posts)
 
 
@@ -119,3 +105,56 @@ def account():
     image_file = url_for('static', filename = 'profile_pictures/' + current_user.image_file)
     return render_template('account.html', title = 'My Account', image_file = image_file, 
                             form = form)
+
+
+@app.route("/posts/new", methods = ['GET', 'POST'])
+@login_required
+def new_post():
+    form = PostForm()
+    if form.validate_on_submit():
+        post = Post(title = form.title.data, content = form.content.data, author = current_user)
+        db.session.add(post)
+        db.session.commit()
+        flash('Your post has been shared!', 'success')
+        return redirect(url_for('home'))
+    return render_template('create_new_post.html', tite = 'New Post', form=form, legend = 'Create new post')
+
+
+@app.route("/post/<int:post_id>")
+def post(post_id):
+    #get post with post_id or throw 404
+    post = Post.query.get_or_404(post_id)
+    return render_template('post.html', title = post.title, post = post)
+
+
+@app.route("/post/<int:post_id>/edit", methods = ['GET', 'POST'])
+@login_required
+def edit_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    #only user who wrote that post should be able to update
+    if post.author != current_user:
+        abort(403) #forbidden
+    form = PostForm()
+    if form.validate_on_submit():
+        post.title = form.title.data
+        post.content = form.content.data
+        db.session.commit()
+        flash('Your post has been updated!', 'success')
+        return redirect(url_for('post', post_id = post.id))
+    elif request.method == 'GET':
+        form.title.data = post.title
+        form.content.data = post.content
+    return render_template('create_new_post.html', title = 'Edit Post', form = form, legend = 'Edit post')
+
+
+@app.route("/post/<int:post_id>/delete", methods = ['POST'])
+@login_required
+def delete_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    #only user who wrote that post should be able to delete
+    if post.author != current_user:
+        abort(403) #forbidden
+    db.session.delete(post)
+    db.session.commit()
+    flash('Your post has been deleted!', 'success')
+    return redirect(url_for('home'))
