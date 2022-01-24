@@ -70,7 +70,7 @@ def save_picture(form_picture):
     picture_fn = random_name + f_ext
     #join together the package directory with the custom images location and the picture file name
     picture_path = os.path.join(app.root_path, 'static/profile_pictures', picture_fn)
-    #resize picture to imporve performance and save space
+    #resize picture to improve performance and save space
     output_size = (300, 300)
     i = Image.open(form_picture)
     i.thumbnail(output_size)
@@ -79,6 +79,21 @@ def save_picture(form_picture):
     
     #TODO: clean up old pps after successfull change
     
+    return picture_fn
+
+
+def save_posted_picture(form_picture):
+    random_name = secrets.token_hex(8)
+    _, f_ext = os.path.splitext(form_picture.filename)
+    picture_fn = random_name + f_ext
+    #join together the package directory with the custom images location and the picture file name
+    picture_path = os.path.join(app.root_path, 'static/posted_pictures', picture_fn)
+    #resize picture to improve performance and save space
+    output_size = (800, 600)
+    i = Image.open(form_picture)
+    i.thumbnail(output_size)
+    #save image to filesystem
+    i.save(picture_path)
     return picture_fn
 
 
@@ -111,40 +126,51 @@ def account():
 @login_required
 def new_post():
     form = PostForm()
+    post = Post()
+    posted_picture = None
     if form.validate_on_submit():
-        post = Post(title = form.title.data, content = form.content.data, author = current_user)
+        if form.picture.data:
+            posted_picture = save_posted_picture(form.picture.data)
+        post = Post(title = form.title.data, content = form.content.data, author = current_user, picture = posted_picture)
         db.session.add(post)
         db.session.commit()
         flash('Your post has been shared!', 'success')
         return redirect(url_for('home'))
-    return render_template('create_new_post.html', tite = 'New Post', form=form, legend = 'Create new post')
+    return render_template('create_new_post.html', title = 'New Post', form=form, legend = 'Create new post')
 
 
 @app.route("/post/<int:post_id>")
 def post(post_id):
     #get post with post_id or throw 404
     post = Post.query.get_or_404(post_id)
-    return render_template('post.html', title = post.title, post = post)
+    if post.picture != None:
+        image_file = url_for('static', filename = 'posted_pictures/' + post.picture)
+        return render_template('post.html', title = post.title, post = post, picture = post.picture)
+    else: return render_template('post.html', title = post.title, post = post)
 
 
 @app.route("/post/<int:post_id>/edit", methods = ['GET', 'POST'])
 @login_required
 def edit_post(post_id):
+    form = PostForm()
     post = Post.query.get_or_404(post_id)
     #only user who wrote that post should be able to update
     if post.author != current_user:
         abort(403) #forbidden
-    form = PostForm()
+    posted_picture = None
     if form.validate_on_submit():
+        if form.picture.data:
+            posted_picture = save_posted_picture(form.picture.data)
         post.title = form.title.data
         post.content = form.content.data
+        post.picture = posted_picture
         db.session.commit()
         flash('Your post has been updated!', 'success')
         return redirect(url_for('post', post_id = post.id))
     elif request.method == 'GET':
         form.title.data = post.title
         form.content.data = post.content
-    return render_template('create_new_post.html', title = 'Edit Post', form = form, legend = 'Edit post')
+    return render_template('create_new_post.html', title = 'Edit Post', form = form, picture = post.picture, legend = 'Edit post')
 
 
 @app.route("/post/<int:post_id>/delete", methods = ['POST'])

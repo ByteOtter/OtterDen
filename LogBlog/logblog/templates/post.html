@@ -15,9 +15,14 @@
       </div>
       <h2 class="article-title">{{ post.title }}</h2>
       <p class="article-content">{{ post.content }}</p>
+      {% if post.picture %}
+      <div class="post-img">
+        <img class="post-img" src="{{ url_for('static', filename='posted_pictures/' + post.picture) }}"></img>
+      </div>
+      {% endif %}
     </div>
   </article>
-  <!-- Confirmation Pop-up. TODO: This does not show up yet... -->
+  <!-- Confirmation Pop-up. -->
   <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
