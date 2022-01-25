@@ -40,9 +40,9 @@
             <div class = "form-group">
                 {{ form.submit(class = "btn btn-outline-info") }}
             </div>
-            <small class="text-muted ml-2">
+            <small class="text-muted">
                 <!--'#' is a dummy url that goes nowhere. This needs to be replaced-->
-                <a href = "#">Forgot your password?</a>
+                <a href = "{{ url_for('reset_request') }}">Forgot your password?</a>
             </small>
         </form>
     </div>
