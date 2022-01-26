@@ -42,13 +42,13 @@
             </div>
             <small class="text-muted">
                 <!--'#' is a dummy url that goes nowhere. This needs to be replaced-->
-                <a href = "{{ url_for('reset_request') }}">Forgot your password?</a>
+                <a href = "{{ url_for('users.reset_request') }}">Forgot your password?</a>
             </small>
         </form>
     </div>
     <div class = "border-top pt-3">
         <small class = "text-muted">
-            New to LogBlog? <a class = "ml-2" href = "{{ url_for('register') }}">Join for free!</a>
+            New to LogBlog? <a class = "ml-2" href = "{{ url_for('users.register') }}">Join for free!</a>
         </small>
     </div>
 {% endblock content %}
