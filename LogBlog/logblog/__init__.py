@@ -30,9 +30,12 @@ def create_app(config_class=Config):
     from logblog.users.routes import users
     from logblog.posts.routes import posts
     from logblog.main.routes import main
+    #register error handlers with application
+    from logblog.errors.handlers import errors
     #register Blueprints to app
     app.register_blueprint(users)
     app.register_blueprint(posts)
     app.register_blueprint(main)
+    app.register_blueprint(errors)
     
     return app
