@@ -15,6 +15,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(120), unique=True, nullable=False)
     image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
     password = db.Column(db.String(60), nullable = False)
+    biography = db.Column(db.String(250), nullable = True)
     #User has a relationship to Post model. One User has multiple posts but posts only one author.
     posts = db.relationship('Post', backref='author', lazy=True)
     
