@@ -64,6 +64,7 @@ def account():
             current_user.image_file = picture_file
         current_user.username = form.username.data
         current_user.email = form.email.data
+        current_user.biography = form.biography.data
         db.session.commit()
         flash('Your account information has been updated!', 'success')
         return redirect(url_for('users.account'))
@@ -71,6 +72,7 @@ def account():
     elif request.method == 'GET':
         form.username.data = current_user.username
         form.email.data = current_user.email
+        form.biography.data = current_user.biography
     #set user profile picture as default.jpg when none is uploaded and pass to account template
     image_file = url_for('static', filename = 'profile_pictures/' + current_user.image_file)
     return render_template('account.html', title = 'My Account', image_file = image_file, 
