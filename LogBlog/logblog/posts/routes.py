@@ -32,7 +32,16 @@ def post(post_id):
     if post.picture != None:
         image_file = url_for('static', filename = 'posted_pictures/' + post.picture)
         return render_template('post.html', title = post.title, post = post, picture = post.picture)
-    else: return render_template('post.html', title = post.title, post = post)
+    else: return render_template('post.html', title = post.title, post = post, is_pinned = post.is_pinned)
+
+
+@posts.route("/post/<int:post_id>/pin")
+def pin_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    post.is_pinned = is_pinned
+    print(post.is_pinned)
+    db.session.commit()
+    return render_template('post.html', title = post.title, post = post, is_pinned = post.is_pinned)
 
 
 @posts.route("/post/<int:post_id>/edit", methods = ['GET', 'POST'])

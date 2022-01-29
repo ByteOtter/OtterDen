@@ -1,6 +1,7 @@
 import os
 import secrets
 from PIL import Image
+from logblog import db
 from flask import url_for, current_app
 
 def save_posted_picture(form_picture):
