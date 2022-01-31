@@ -78,6 +78,21 @@ def account():
     return render_template('account.html', title = 'My Account', image_file = image_file, 
                             form = form)
 
+
+@users.route("/account/delete", methods = ['POST'])
+@login_required
+def delete_user():
+    username = current_user.username
+    user = User.query.get_or_404(username)
+    #only user who wrote that post should be able to delete
+    if user.username != current_user.username:
+        abort(403) #forbidden
+    db.session.delete(user)
+    logout_user()
+    db.session.commit()
+    flash('Your account has been deleted!', 'success')
+    return redirect(url_for('main.home'))
+
 #show complete user profile and a post history underneath
 @users.route("/user/history/<string:username>")
 def show_user_post_history(username):
