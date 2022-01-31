@@ -12,6 +12,22 @@
                 {% endif %}
             </div>
         </div>
+        <!--if the user has posts pinned: show the pinned posts-->
+        {% for post in user.posts.items %}
+            {% if post.is_pinned %}
+                <article class="media content-section">
+                <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pictures/' + post.author.image_file) }}">
+                <div class="media-body">
+                    <div class="article-metadata">
+                    <a class="mr-2" href="{{ url_for('users.show_user_post_history', username=post.author.username) }}">{{ post.author.username }}</a>
+                    <small class="text-muted">{{ post.date_posted.strftime("%Y-%m-%d, %H:%M") }}</small>
+                    </div>
+                    <h2><a class="article-title" href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}</a></h2>
+                    <p class="article-content">{{ post.content }}</p>
+                </div>
+                </article>
+            {% endif %}
+        {% endfor %}
     </div>
     <a class="btn btn-info mb-4" href="{{ url_for('users.show_user_post_history', username=user.username) }}">Show post history</a>
 {% endblock content %}
