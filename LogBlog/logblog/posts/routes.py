@@ -36,7 +36,9 @@ def post(post_id):
 
 
 @posts.route("/post/<int:post_id>/pin")
-def pin_post(post_id, is_pinned):
+def pin_post(post_id):
+    is_pinned = request.args.get('is_pinned', type = bool)
+    print(is_pinned)
     post = Post.query.get_or_404(post_id)
     post.is_pinned = is_pinned
     print(post.is_pinned)
