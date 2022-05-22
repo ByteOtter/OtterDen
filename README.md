@@ -1,4 +1,4 @@
-## Welcome to LogBlog!
+# Welcome to LogBlog!
 
 LogBlog is (going to be) a small and simple Flask-based Blog application with database and everything.
 
@@ -8,7 +8,7 @@ Thank you!
 
 #### - ByteOtter
 
-### - How to Install
+### How to Install
 
 If you want to pull and install this application you need to create a database and pass it to the application. The app can't do that on its own yet. I am working on a fix.
 
