@@ -54,7 +54,7 @@ def edit_post(post_id):
     #only user who wrote that post should be able to update
     if post.author != current_user:
         abort(403) #forbidden
-    posted_picture = None
+    posted_picture = post.picture
     if form.validate_on_submit():
         if form.picture.data:
             posted_picture = save_posted_picture(form.picture.data)
