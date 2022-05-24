@@ -4,6 +4,7 @@ from logblog import db
 from logblog.models import Post
 from logblog.posts.forms import PostForm
 from logblog.posts.utils import save_posted_picture
+import os
 
 posts = Blueprint('posts', __name__)
 
@@ -77,6 +78,9 @@ def delete_post(post_id):
     #only user who wrote that post should be able to delete
     if post.author != current_user:
         abort(403) #forbidden
+    #remove the picture included in the post if there is any
+    if post.picture != None:
+        os.remove('logblog/static/posted_pictures/' + post.picture)
     db.session.delete(post)
     db.session.commit()
     flash('Your post has been deleted!', 'success')
