@@ -4,6 +4,11 @@ from logblog import db, bcrypt
 from logblog.models import User, Post
 from logblog.users.forms import RegistrationForm, LoginForm, UpdateAccountInfoForm, RequestPasswordResetForm, ResetPasswordForm
 from logblog.users.utils import save_picture, send_reset_email
+from logblog.posts.routes import delete_post
+from logblog.posts.utils import delete_from_db
+from os.path import exists
+from array import *
+
 import os
 
 users = Blueprint('users', __name__)
@@ -41,6 +46,8 @@ def login():
             flash(f'Welcome, {user.username}!', 'success')
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('main.home')) #redirect to the next page if it exists, else redirect to home.
+        elif user == None:
+            flash('Sorry, there is no user registered with this mail address.', 'danger')
         else:
             flash('Login unsuccessful. Please check your email and password.', 'danger')
     return render_template('login.html', title = 'Login', form = form)
@@ -62,7 +69,7 @@ def account():
     if form.validate_on_submit():
         if form.picture.data:
             #if a picture file is given AND the current picture file is NOT default -> remove the old file
-            if current_user.image_file != 'default.jpg':
+            if current_user.image_file != 'default.jpg' and current_user.image_file != None:
                 os.remove('logblog/static/profile_pictures/' + current_user.image_file)
             picture_file = save_picture(form.picture.data)
             current_user.image_file = picture_file
@@ -83,19 +90,20 @@ def account():
                             form = form)
 
 
-@users.route("/account/delete", methods = ['POST'])
+@users.route("/account/delete", methods = ['GET', 'POST'])
 @login_required
 def delete_user():
     username = current_user.username
-    user = User.query.get_or_404(username)
-    #only user who wrote that post should be able to delete
+    user = User.query.filter_by(username = username).first_or_404()
+    #only the current user should be able to delete their own profile
     if user.username != current_user.username:
         abort(403) #forbidden
-    os.remove('/logblog/static/profile_pictures/' + current_user.image_file)
-    db.session.delete(user)
     logout_user()
+    if user.image_file != 'default.jpg':
+        os.remove('logblog/static/profile_pictures/' + user.image_file)
+    db.session.delete(user)
     db.session.commit()
-    flash('Your account has been deleted!', 'success')
+    flash('Your account has been deleted. We will miss you!', 'success')
     return redirect(url_for('main.home'))
 
 #show complete user profile and a post history underneath
@@ -142,3 +150,18 @@ def reset_password(token):
 def user_profile(username):
     user = User.query.filter_by(username = username).first_or_404()
     return render_template('user_profile.html', title = 'Profile - {user.username}', user = user)
+
+
+@users.route("/user/<string:username>/purge_posts", methods = ['POST'])
+def purge_posts(username):
+    user = User.query.filter_by(username = username).first_or_404()
+    post_ids_to_delete = []
+    for post in user.posts:
+        post_ids_to_delete += [post.id]
+    for post_id in post_ids_to_delete:
+        delete_from_db(post_id, send_flash = False)
+    db.session.commit()
+    page = request.args.get('page', 1, type = int)
+    posts = Post.query.filter_by(author=user).order_by(Post.date_posted.desc()).paginate(page = page, per_page = 10)
+    flash('Your posts have been PURGED!', 'warning')
+    return render_template('post_history.html', title = 'History of {user.username}', posts = posts, user = user)
