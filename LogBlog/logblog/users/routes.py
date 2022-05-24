@@ -4,6 +4,7 @@ from logblog import db, bcrypt
 from logblog.models import User, Post
 from logblog.users.forms import RegistrationForm, LoginForm, UpdateAccountInfoForm, RequestPasswordResetForm, ResetPasswordForm
 from logblog.users.utils import save_picture, send_reset_email
+import os
 
 users = Blueprint('users', __name__)
 
@@ -60,6 +61,9 @@ def account():
     #if form is valid on submit. Update the account information
     if form.validate_on_submit():
         if form.picture.data:
+            #if a picture file is given AND the current picture file is NOT default -> remove the old file
+            if current_user.image_file != 'default.jpg':
+                os.remove('logblog/static/profile_pictures/' + current_user.image_file)
             picture_file = save_picture(form.picture.data)
             current_user.image_file = picture_file
         current_user.username = form.username.data
@@ -87,6 +91,7 @@ def delete_user():
     #only user who wrote that post should be able to delete
     if user.username != current_user.username:
         abort(403) #forbidden
+    os.remove('/logblog/static/profile_pictures/' + current_user.image_file)
     db.session.delete(user)
     logout_user()
     db.session.commit()
