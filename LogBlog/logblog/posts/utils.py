@@ -1,7 +1,11 @@
 import os
 import secrets
 from PIL import Image
-from flask import url_for, current_app
+from flask import url_for, current_app, flash
+from flask_login import current_user
+from logblog import db
+from logblog.models import Post
+
 
 def save_posted_picture(form_picture):
     random_name = secrets.token_hex(8)
@@ -16,3 +20,17 @@ def save_posted_picture(form_picture):
     #save image to filesystem
     i.save(picture_path)
     return picture_fn
+
+def delete_from_db(post_id, send_flash):
+    post = Post.query.get_or_404(post_id)
+    #only user who wrote that post should be able to delete
+    if post.author != current_user:
+        abort(403) #forbidden
+    #remove the picture included in the post if there is any
+    if post.picture != None:
+        os.remove('logblog/static/posted_pictures/' + post.picture)
+    db.session.delete(post)
+    db.session.commit()
+    if send_flash:
+        flash('Your post has been deleted!', 'success')
+        

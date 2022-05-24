@@ -3,7 +3,7 @@ from flask_login import current_user, login_required
 from logblog import db
 from logblog.models import Post
 from logblog.posts.forms import PostForm
-from logblog.posts.utils import save_posted_picture
+from logblog.posts.utils import save_posted_picture, delete_from_db
 import os
 
 posts = Blueprint('posts', __name__)
@@ -74,14 +74,5 @@ def edit_post(post_id):
 @posts.route("/post/<int:post_id>/delete", methods = ['POST'])
 @login_required
 def delete_post(post_id):
-    post = Post.query.get_or_404(post_id)
-    #only user who wrote that post should be able to delete
-    if post.author != current_user:
-        abort(403) #forbidden
-    #remove the picture included in the post if there is any
-    if post.picture != None:
-        os.remove('logblog/static/posted_pictures/' + post.picture)
-    db.session.delete(post)
-    db.session.commit()
-    flash('Your post has been deleted!', 'success')
+    delete_from_db(post_id, send_flash = True)
     return redirect(url_for('main.home'))

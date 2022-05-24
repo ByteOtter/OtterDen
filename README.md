@@ -26,9 +26,6 @@ To install this app you need to...
 
 ...run the following commands in your python interpreter while in the LogBlog directory:
 
-    - from main import create_app //this imports the create_app function from main.py
-    - from logblog import db //imports the db variable and database instance
-    - app = create_app()
-    - app = app.app_context().push() //push the app app_context
-    - db.create_all()
-
+    - from main import create_app #this imports the create_app function from main.py
+    - from logblog import db #imports the db variable and database instance
+    - db.create_all(app=create_app()) #this creates the database, the appinstance and context
