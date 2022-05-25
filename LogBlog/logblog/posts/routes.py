@@ -4,7 +4,6 @@ from logblog import db
 from logblog.models import Post
 from logblog.posts.forms import PostForm
 from logblog.posts.utils import save_posted_picture, delete_from_db
-import os
 
 posts = Blueprint('posts', __name__)
 
@@ -37,6 +36,7 @@ def post(post_id):
 
 
 @posts.route("/post/<int:post_id>/pin")
+@login_required
 def pin_post(post_id):
     is_pinned = request.args.get('is_pinned', type = bool)
     print(is_pinned)

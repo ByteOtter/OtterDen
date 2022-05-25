@@ -1,7 +1,7 @@
 import os
 import secrets
 from PIL import Image
-from flask import url_for, current_app, flash
+from flask import url_for, current_app, abort, flash
 from flask_login import current_user
 from logblog import db
 from logblog.models import Post

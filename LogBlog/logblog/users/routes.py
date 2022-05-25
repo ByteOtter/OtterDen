@@ -1,4 +1,4 @@
-from flask import render_template, url_for, flash, redirect, request, Blueprint
+from flask import render_template, url_for, abort, flash, redirect, request, Blueprint
 from flask_login import login_user, current_user, logout_user, login_required
 from logblog import db, bcrypt
 from logblog.models import User, Post
@@ -6,8 +6,6 @@ from logblog.users.forms import RegistrationForm, LoginForm, UpdateAccountInfoFo
 from logblog.users.utils import save_picture, send_reset_email
 from logblog.posts.routes import delete_post
 from logblog.posts.utils import delete_from_db
-from os.path import exists
-from array import *
 
 import os
 
@@ -96,11 +94,11 @@ def delete_user():
     username = current_user.username
     user = User.query.filter_by(username = username).first_or_404()
     #only the current user should be able to delete their own profile
-    if user.username != current_user.username:
+    if user.username != username:
         abort(403) #forbidden
-    logout_user()
     if user.image_file != 'default.jpg':
         os.remove('logblog/static/profile_pictures/' + user.image_file)
+    purge_posts(username) #TODO
     db.session.delete(user)
     db.session.commit()
     flash('Your account has been deleted. We will miss you!', 'success')
@@ -153,6 +151,7 @@ def user_profile(username):
 
 
 @users.route("/user/<string:username>/purge_posts", methods = ['POST'])
+@login_required
 def purge_posts(username):
     user = User.query.filter_by(username = username).first_or_404()
     post_ids_to_delete = []
