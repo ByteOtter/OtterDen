@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="{{ 'dark-mode' if session.get('theme') == 'dark' }}">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UACompatible" content="ie=edge"/>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -12,7 +13,12 @@
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     
-    <link rel = "stylesheet" type = "text/css" href = "{{ url_for('static', filename = 'main.css') }}">
+    <link rel = "stylesheet" type = "text/css" href = "{{ url_for('static', filename = 'main.css') }}" title = "light_mode">
+    
+    <link rel = "alternate stylesheet" type = "text/css" href = "{{ url_for('static', filename = 'dark_mode.css')}}" title = "dark_mode">
+    
+    <!-- Import macros -->
+    {% from "macros/svgs.html" import moon, sun %}
 
     {% if title %}
     <title>LogBlog - {{ title }}</title>
@@ -41,7 +47,6 @@
                                     <path fill-rule="evenodd" d="M10.646.646a.5.5 0 0 1 .708 0l4 4a.5.5 0 0 1 0 .708l-1.902 1.902-.829 3.313a1.5 1.5 0 0 1-1.024 1.073L1.254 14.746 4.358 4.4A1.5 1.5 0 0 1 5.43 3.377l3.313-.828L10.646.646zm-1.8 2.908-3.173.793a.5.5 0 0 0-.358.342l-2.57 8.565 8.567-2.57a.5.5 0 0 0 .34-.357l.794-3.174-3.6-3.6z"/>
                                     <path fill-rule="evenodd" d="M2.832 13.228 8 9a1 1 0 1 0-1-1l-4.228 5.168-.026.086.086-.026z"/>
                                 </svg>
-                                
                                 Create new post!
                             </a>
                             <a class="nav-item nav-link" href="{{ url_for('users.account') }}">
@@ -74,6 +79,16 @@
                                 Register
                             </a>
                         {% endif %}
+                        <!--Allow user to switch between dark and lightmode-->
+                        <a class="nav-link float-right" href="{{ url_for('main.toggle_theme', current_page=request.path) }}">
+                            <span class="nav-item">
+                                {% if theme == "dark" %}
+                                    {{ sun("nav__icon") }}
+                                {% else %}
+                                    {{ moon("nav__icon") }}
+                                {% endif %}
+                            </span>
+                        </a>
                     </div>
                 </div>
             </div>
