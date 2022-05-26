@@ -1,4 +1,4 @@
-from flask import render_template, request, Blueprint
+from flask import render_template, request, Blueprint, session, redirect
 from logblog.models import Post
 
 main = Blueprint('main', __name__)
@@ -14,3 +14,13 @@ def home():
 @main.route("/about")
 def about():
     return render_template('about.html', title = 'About LogBlog')
+
+
+@main.route("/togge-theme")
+def toggle_theme():
+    current_theme = session.get("theme")
+    if current_theme == "dark":
+        session["theme"] = "light"
+    else:
+        session["theme"] = "dark"
+    return redirect(request.args.get("current_page"))

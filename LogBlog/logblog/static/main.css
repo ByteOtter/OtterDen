@@ -1,23 +1,72 @@
+:root {
+  --site-header-color: #26a53b;
+  --site-header-color-hover: #000000;
+  
+  --navbar-text-color: #ffffff;
+  
+  --site-background: #fafafa;
+  --site-background-color: #333333;
+  
+  --text-heading: #444444;
+  --text-body: #444444;
+  --text-body-muted: #e3e3e3;
+  
+  --background-color: #fafafa;
+  --accent-color-hover: #27a93c;
+  --metadata-color-hover: #2F2FB6;
+  
+  --article-title-color: #444444;
+  --article-content-color: #444444;
+  
+  --border: 3px solid #dddddd;
+  --content-border: 1px solid #dddddd;
+  
+}
+
+:root.dark-mode {
+  --site-header-color: #2960e1;
+  --site-header-color-hover: #000000;
+  
+  --navbar-text-color: #ffffff;
+  
+  --site-background: #353536;
+  --site-background-color: #AEAEAE;
+  
+  --text-heading: #F2F2F3;
+  --text-body: #F2F2F3;
+  --text-body-muted: #A5A5A6;
+  
+  --background-color: #4C4C4D;
+  --accent-color-hover: #ACACFF;
+  --metadata-color-hover: #D1D1FF;
+  
+  --article-title-color: #EEEEF0;
+  --article-content-color: #EEEEF0;
+  
+  --border: 3px solid #696969;
+  --content-border: 1px solid #696969;
+}
+
 body {
-  background: #fafafa;
-  color: #333333;
+  background: var(--site-background);
+  color: var(--site-background-color);
   margin-top: 5rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #444444;
+  color: var(--text-heading);
 }
 
 .bg-steel {
-  background-color: #5f788a;
+  background-color: var(--site-header-color);
 }
 
 .site-header .navbar-nav .nav-link {
-  color: #cbd5db;
+  color: var(--navbar-text-color);
 }
 
 .site-header .navbar-nav .nav-link:hover {
-  color: #ffffff;
+  color: var(--site-header-color-hover);
 }
 
 .site-header .navbar-nav .nav-link.active {
@@ -25,23 +74,25 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .content-section {
-  background: #ffffff;
+  /* color: var(--article-content-color);*/
+  background: var(--background-color);
   padding: 10px 20px;
-  border: 1px solid #dddddd;
+  border: var(--content-border);
   border-radius: 3px;
   margin-bottom: 20px;
 }
 
 .article-title {
-  color: #444444;
+  color: var(--article-title-color);
 }
 
 a.article-title:hover {
-  color: #428bca;
+  color: var(--accent-color-hover);
   text-decoration: none;
 }
 
 .article-content {
+  color: var(--article-content-color);
   white-space: pre-line;
 }
 
@@ -52,13 +103,14 @@ a.article-title:hover {
 }
 
 .article-metadata {
+  color: var(--metadata-color-hover);
   padding-bottom: 1px;
   margin-bottom: 4px;
-  border-bottom: 1px solid #e3e3e3
+  border-bottom: var(--content-border)
 }
 
 .article-metadata a:hover {
-  color: #333;
+  color: var(--accent-color-hover);
   text-decoration: none;
 }
 

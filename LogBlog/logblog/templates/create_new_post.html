@@ -45,7 +45,8 @@
                 </div>
             </fieldset>
             <div class = "form-group">
-                {{ form.submit(class = "btn btn-outline-info") }}
+                {{ form.submit(class = "btn btn-info") }}
+                <a class = "btn btn-outline-info mb-4 float-right" href="{{ url_for('main.home') }}">Cancel</a>
             </div>
         </form>
     </div>
