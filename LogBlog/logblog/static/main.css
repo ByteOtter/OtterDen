@@ -86,7 +86,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--article-title-color);
 }
 
-a.article-title:hover {
+.article-title:hover {
   color: var(--accent-color-hover);
   text-decoration: none;
 }
@@ -129,8 +129,8 @@ a.article-title:hover {
 }
 
 .post-img {
-  height: 250px;
-  width: 250px;
+  height: 300px;
+  width: 300px;
   margin-right: 20px;
   margin-bottom: 16px;
   object-fit:cover;
@@ -139,3 +139,4 @@ a.article-title:hover {
 .account-heading {
   font-size: 2.5rem;
 }
+

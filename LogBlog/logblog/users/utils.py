@@ -18,9 +18,7 @@ def save_picture(form_picture):
     i.thumbnail(output_size)
     #save image to filesystem
     i.save(picture_path)
-    
-    #TODO: clean up old pps after successfull change
-    
+
     return picture_fn
 
 
