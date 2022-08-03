@@ -18,7 +18,7 @@ class User(db.Model, UserMixin):
     biography = db.Column(db.String(250), nullable = True)
     #User has a relationship to Post model. One User has multiple posts but posts only one author.
     posts = db.relationship('Post', backref='author', lazy=True)
-    
+
     #create time sensitive authentication token for resetting the password (default 1800sec = 30 mins) This needs to be reduced!
     def get_reset_token(self, expires_sec=1800):
         s = Serializer(current_app.config['SECRET_KEY'], expires_sec)
@@ -46,6 +46,6 @@ class Post(db.Model):
     content = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) #ID of the author.
     is_pinned = db.Column(db.Boolean, default=False)
-    
+
     def __repr__(self):
         return f"Post('{self.title}', '{self.date_posted}')"
