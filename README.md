@@ -22,10 +22,16 @@ To install this app you need to...
 
 ...specifythe path to your database as an environment variable. Check config.py for the variable name and run something like this:
 
-    - SQLALCHEMY_DATABASE_URI = sqlite:///logBlogDEV.py
+    - SQLALCHEMY_DATABASE_URI='sqlite:///logBlogDEV.db'
 
 ...run the following commands in your python interpreter while in the LogBlog directory:
 
     - from main import create_app #this imports the create_app function from main.py
     - from logblog import db #imports the db variable and database instance
     - db.create_all(app=create_app()) #this creates the database, the appinstance and context
+
+# Notice:
+
+If you enconter an issue stating somthing like "NoneTypeObject" doesn't have attribute "drivername" or something similar. Make sure your environment variables are set perminantly. If necessary add the lines for all variables secified in logblog/config.py at the end of the environement file you can find here:
+
+    - etc/environment
