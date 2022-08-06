@@ -4,3 +4,5 @@ LogBlog/logblog/static/profile_pictures/*
 !LogBlog/logblog/static/profile_pictures/default.jpg
 
 LogBlog/logblog/static/posted_pictures/*
+env/*
+LogBlog/logblog/*/__pycache__/
