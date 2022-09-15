@@ -6,3 +6,4 @@ LogBlog/logblog/static/profile_pictures/*
 LogBlog/logblog/static/posted_pictures/*
 env/*
 LogBlog/logblog/*/__pycache__/
+LogBlog/logblog/__pycache__/
