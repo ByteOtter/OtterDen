@@ -1,3 +1,5 @@
+# Copyright 2021-2022 ByteOtter
+
 # TODO: implement tests for register login and logout
 Feature: Registration and Login
 
