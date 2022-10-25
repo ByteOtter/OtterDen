@@ -8,7 +8,7 @@ This is still under heavy development and this section will be expanded upon whe
 
 ## Running tests
 
-To run the example tess already implemented:
+To run the example tests already implemented:
 
 - make sure that pip installed all of LogBlogs requirements `pip install -R requirements.txt`
 
