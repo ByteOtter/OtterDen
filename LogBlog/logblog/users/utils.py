@@ -30,6 +30,9 @@ Just follow this link:
 
     {url_for('users.reset_password', token = token, _external = True)}
 
-If you did not request a password reset, simply ignore this email.        
+If you did not request a password reset, simply ignore this email.
+
+Love,
+Your LogBlog Mailer
 '''
     mail.send(msg)

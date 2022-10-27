@@ -37,7 +37,7 @@ Feature: Sanity checkt to test default GUI outputs
         Then I should see a "Welcome back! Please login." text
         And I should see a "Email" field
         And I should see a "Password" field
-        And I should see a "Remember me ?" checkbox
+        And I should see a "Remember me?" checkbox
         And I should see a "Sign In" button
         And I should see a "Forgot your password?" link
         And I should see a "New to LogBlog?" text
