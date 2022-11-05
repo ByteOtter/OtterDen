@@ -1,3 +1,5 @@
+#Copyright ByteOtter (c) 2021-2022
+
 from logblog import create_app
 
 app = create_app()

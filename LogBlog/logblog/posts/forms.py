@@ -1,3 +1,5 @@
+#Copyright ByteOtter (c) 2022
+
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, TextAreaField, FileField
 from wtforms.validators import DataRequired

@@ -1,3 +1,5 @@
+#Copyright ByteOtter (c) 2021-2022
+
 from flask import render_template, request, Blueprint, session, redirect
 from logblog.models import Post
 

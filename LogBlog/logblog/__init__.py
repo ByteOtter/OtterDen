@@ -1,3 +1,5 @@
+#Copyright ByteOtter (c) 2021-2022
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt

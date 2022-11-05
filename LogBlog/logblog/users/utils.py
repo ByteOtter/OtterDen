@@ -1,3 +1,5 @@
+#Copyright ByteOtter (c) 2021-2022
+
 import os
 import secrets
 from PIL import Image

@@ -1,3 +1,5 @@
+#Copyright ByteOtter (c) 2021-2022
+
 from flask import render_template, url_for, abort, flash, redirect, request, Blueprint
 from flask_login import login_user, current_user, logout_user, login_required
 from logblog import db, bcrypt

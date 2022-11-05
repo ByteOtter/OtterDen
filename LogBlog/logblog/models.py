@@ -1,3 +1,5 @@
+#Copyright ByteOtter (c) 2021-2022
+
 from datetime import datetime
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from logblog import db, login_manager
