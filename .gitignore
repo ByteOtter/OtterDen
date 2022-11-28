@@ -7,3 +7,6 @@ LogBlog/logblog/static/posted_pictures/*
 env/*
 LogBlog/logblog/*/__pycache__/
 LogBlog/logblog/__pycache__/
+
+testsuite/test_utils/__pycache__/
+testsuite/geckodriver.log
