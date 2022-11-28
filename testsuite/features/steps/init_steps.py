@@ -4,7 +4,7 @@ from behave import *
 
 ### Step definitions for initialization ###
 
-@given(u'I open Firefox')
+@given(u'I start Firefox')
 def step_impl(context):
     context.browser.open()
     context.browser.maximize()
