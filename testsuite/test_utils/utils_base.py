@@ -16,7 +16,7 @@ class UtilFunc(object):
     def __init__(self, driver):
         super(UtilFunc, self).__init__()
         self._driver_wait = WebDriverWait(driver, UtilFunc.__TIMEOUT)
-        self.driver = driver
+        self._driver = driver
     
     def open(self, url):
         self._driver.get(url)
@@ -25,7 +25,7 @@ class UtilFunc(object):
         self._driver.maximize_window()
     
     def close(self):
-        self._driver_quit()
+        self._driver.quit()
     
     # Helper functions used to identify web locators in Selenium Python
 
