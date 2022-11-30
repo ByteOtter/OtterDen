@@ -1,4 +1,4 @@
 [MASTER]
-ignore-patterns=**/testsuite/**/*.py
+ignore-paths=testsuite/*.py
 disable=all
 enable=unused-import,undefined-variable,trailing-whitespace,wildcard-import,import-error
