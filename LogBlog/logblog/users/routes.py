@@ -85,8 +85,7 @@ def account():
         form.biography.data = current_user.biography
     #set user profile picture as default.jpg when none is uploaded and pass to account template
     image_file = url_for('static', filename = 'profile_pictures/' + current_user.image_file)
-    return render_template('account.html', title = 'My Account', image_file = image_file, 
-                            form = form)
+    return render_template('account.html', title = 'My Account', image_file = image_file, form = form)
 
 
 @users.route("/account/delete", methods = ['GET', 'POST'])
