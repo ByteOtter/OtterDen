@@ -1,0 +1,37 @@
+# This file contains configurations for the labeler workflow
+
+python:
+- *.py
+
+html:
+- LogBlog/logblog/templates/**/*.html
+
+css:
+- LogBlog/**/*.css
+
+documentation:
+- *.md
+- LICENSE
+
+testsuite:
+- testsuite/**/*
+
+QA/QE:
+- testsuite/**/*
+
+behave:
+- testsuite/**/*.py
+
+dependencies:
+- Pipfile
+- Pipfile.lock
+- requirements.txt
+
+usr-feature:
+- LogBlog/logblog/users/*
+
+posts-feature:
+- LogBlog/logblog/posts/*
+
+templates:
+- LogBlog/logblog/templates/**/*
