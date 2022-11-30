@@ -10,7 +10,7 @@ css:
 - LogBlog/**/*.css
 
 documentation:
-- *.md
+- '*'.md
 - LICENSE
 
 testsuite:
