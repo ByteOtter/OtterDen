@@ -1,7 +1,7 @@
 # This file contains configurations for the labeler workflow
 
 python:
-- *.py
+- LogBlog/**/*.py
 
 html:
 - LogBlog/logblog/templates/**/*.html
