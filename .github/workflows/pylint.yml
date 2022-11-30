@@ -21,4 +21,4 @@ jobs:
         pip install pylint
     - name: Analysing the code with pylint
       run: |
-        pylint --disable=C0114, C0115, C0116, fixme, line-too-long, unused-argument $(git ls-files '*.py')
+        pylint --disable=all --enable=unused-import, undefined-variable, trailing-whitespace, wildcard-import, import-error $(git ls-files '*.py')
