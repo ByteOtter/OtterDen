@@ -7,7 +7,7 @@ from test_utils import *
 
 @given(u'I am logged in')
 def step_impl(context):
-    pass
+    context.browser.open("localhost:5000/home")
 
 @when(u'I click on "(.*?)"')
 def step_impl(context, btn_identifier):
