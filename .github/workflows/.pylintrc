@@ -1,0 +1,4 @@
+[MASTER]
+ignore=testsuite
+disabel=all
+enable=unused-import,undefined-variable,trailing-whitespace,wildcard-import,import-error
