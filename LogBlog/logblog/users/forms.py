@@ -1,4 +1,4 @@
-#Copyright ByteOtter (c) 2021-2022
+# Copyright ByteOtter (c) 2021-2022
 
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
