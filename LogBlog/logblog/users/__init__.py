@@ -1,1 +1,1 @@
-#Copyright ByteOtter (c) 2021-2022
+# Copyright ByteOtter (c) 2021-2022
