@@ -1,4 +1,4 @@
-#Copyright ByteOtter (c) 2021-2022
+# Copyright ByteOtter (c) 2021-2022
 
 from flask import render_template, url_for, abort, flash, redirect, request, Blueprint
 from flask_login import login_user, current_user, logout_user, login_required
@@ -6,7 +6,6 @@ from logblog import db, bcrypt
 from logblog.models import User, Post
 from logblog.users.forms import RegistrationForm, LoginForm, UpdateAccountInfoForm, RequestPasswordResetForm, ResetPasswordForm
 from logblog.users.utils import save_picture, send_reset_email
-from logblog.posts.routes import delete_post
 from logblog.posts.utils import delete_from_db
 
 import os

@@ -3,7 +3,7 @@
 import os
 import secrets
 from PIL import Image
-from flask import url_for, current_app, abort, flash
+from flask import current_app, abort, flash
 from flask_login import current_user
 from logblog import db
 from logblog.models import Post
@@ -35,4 +35,4 @@ def delete_from_db(post_id, send_flash):
     db.session.commit()
     if send_flash:
         flash('Your post has been deleted!', 'success')
-        
+
