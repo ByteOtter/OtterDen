@@ -1,0 +1,7 @@
+# This file contains all Codeowners. The owners of the specified files are automaticaly requested
+# for review when a PR is openend
+
+# I will be requested to review any change pushed to LogBlog
+*   @ByteOtter
+
+## More coming soon?
