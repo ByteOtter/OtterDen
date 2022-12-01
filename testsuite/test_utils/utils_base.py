@@ -2,7 +2,7 @@
 
 """
 This file contains wrapper functions for Selenium API calls.
-This is to avoid redudant expressions in code.
+This is to avoid redundant expressions in code.
 """
 
 from selenium import webdriver
@@ -27,7 +27,7 @@ class UtilFunc(object):
     def close(self):
         self._driver.quit()
     
-    # Helper functions used to identify web locators in Selenium Python
+    # Helper functions used to identify web locators in Selenium
 
     def find_by_xpath(self, xpath):
         return self._driver_wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
@@ -37,3 +37,4 @@ class UtilFunc(object):
     
     def find_by_id(self, id):
         return self._driver_wait.until(EC.visibility_of_element_located((By.ID, id)))
+    
