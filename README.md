@@ -1,37 +1,38 @@
 # Welcome to LogBlog!
 
-LogBlog is (going to be) a small and simple Flask-based Blog application with database and everything.
+LogBlog is a small and very simple flask-based online blog. Its purpose is *not* to be publicly deployed but
+to serve as a pet project to learn how various aspects of software development and programming work.
 
-Please note that this application is for testing and learning purposes only and not meant to be deployed in any capacity. **Security flaws are bound to be present**. Feel free to report or fix any bugs you find.
+A little bit about its history first: I started this project at the end of 2021 and began in earnest in early 2022
+using a series of tutorials by [Corey Schafer](https://www.youtube.com/@coreyms) I found on YouTube.<br>
+While I used his great guide as a base my plan is to gradually build on top of it and experiment with different ideas
+and to really flesh out what LogBlog is.
 
-Thank you!
+Features I have added since finishing the tutorial course include:
 
-#### - ByteOtter
+- Ability to upload images to posts (wip)
+- Ability to switch between dark and light mode
+- Dedicated profile page for individual users
+- Post history page to see all posts of a user
+- Set up selenium and behave testsuite to automate future testing
 
-### How to Install
+All of this is still heavily WIP and I will update this list if I have time.
 
-If you want to pull and install this application you need to create a database and pass it to the application. The app can't do that on its own yet. I am working on a fix.
+## Contributing
 
-To install this app you need to...
+If you read this I assume I made this repository public. If you would like to help build LogBlog
+please check the [Issues](https://github.com/ByteOtter/LogBlog/issues) section where I have a list of bugs and future features.<br>
+Feel free to browse I am thankful for every contribution! :)
 
-...make sure that you have python3 and pip installed
+Please refer to the [Contributing Guide](./docs/CONTRIBUTING.md) if you need any help.
 
-...pull the repository
+## Security notice
 
-...make sure pip installs all of logblog's requirements
+Please note that LogBlog **is not intended to be deployed in any capacity**. It is a learning project that is best hosted by
+the greatest hosting service ever: `localhost`.
 
-...specifythe path to your database as an environment variable. Check config.py for the variable name and run something like this:
+Seriously, **security vulnarabilities are bound to be present**.
 
-    - SQLALCHEMY_DATABASE_URI='sqlite:///logBlogDEV.db'
+## Thank you for reading and, if you do, contributing! :)
 
-...run the following commands in your python interpreter while in the LogBlog directory:
-
-    - from main import create_app #this imports the create_app function from main.py
-    - from logblog import db #imports the db variable and database instance
-    - db.create_all(app=create_app()) #this creates the database, the appinstance and context
-
-# Notice:
-
-If you enconter an issue stating somthing like "NoneTypeObject" doesn't have attribute "drivername" or something similar. Make sure your environment variables are set perminantly. If necessary add the lines for all variables secified in logblog/config.py at the end of the environement file you can find here:
-
-    - etc/environment
+- ByteOtter
