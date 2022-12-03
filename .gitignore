@@ -1,4 +1,5 @@
 OtterDen/otter_den/logBlogDEV.db
+OtterDen/__pycache__/
 
 OtterDen/otter_den/static/profile_pictures/*
 !OtterDen/otter_den/static/profile_pictures/default.jpg
