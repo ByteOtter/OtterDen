@@ -3,7 +3,13 @@
 {% extends "layout.html" %}
 {% block content %}
     <center>
-        <img class="img mt-2 mb-5" id="logo" src="/static/logo.png" width=500 height=193>
+        <img 
+            class="img mt-2 mb-5" 
+            id="logo" 
+            src="{{ '/static/logo.png' if session.get('theme') == 'dark' else '/static/logo-light.png' }}"
+            width=500 
+            height=193 
+        >
         <h1>About The Otter Den</h1>
         This blog was created by ByteOtter. Give me a visit under www.github.com/ByteOtter.
         
