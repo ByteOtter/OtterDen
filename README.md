@@ -1,5 +1,7 @@
 # Welcome to The Otter Den!
 
+![The Otter Den](./logo-color.png)
+
 The Otter Den is a small and very simple flask-based online blog. Its purpose is *not* to be publicly deployed but
 to serve as a pet project to learn how various aspects of software development and programming work.<br>
 Further, The Otter Den will henceforth be referenced as OtterDen as this is less effort to type and it is a name
