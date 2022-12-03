@@ -2,11 +2,11 @@
 
 from flask import render_template, url_for, abort, flash, redirect, request, Blueprint
 from flask_login import login_user, current_user, logout_user, login_required
-from logblog import db, bcrypt
-from logblog.models import User, Post
-from logblog.users.forms import RegistrationForm, LoginForm, UpdateAccountInfoForm, RequestPasswordResetForm, ResetPasswordForm
-from logblog.users.utils import save_picture, send_reset_email
-from logblog.posts.utils import delete_from_db
+from otter_den import db, bcrypt
+from otter_den.models import User, Post
+from otter_den.users.forms import RegistrationForm, LoginForm, UpdateAccountInfoForm, RequestPasswordResetForm, ResetPasswordForm
+from otter_den.users.utils import save_picture, send_reset_email
+from otter_den.posts.utils import delete_from_db
 
 import os
 
@@ -69,7 +69,7 @@ def account():
         if form.picture.data:
             #if a picture file is given AND the current picture file is NOT default -> remove the old file
             if current_user.image_file != 'default.jpg' and current_user.image_file != None:
-                os.remove('logblog/static/profile_pictures/' + current_user.image_file)
+                os.remove('otter_den/static/profile_pictures/' + current_user.image_file)
             picture_file = save_picture(form.picture.data)
             current_user.image_file = picture_file
         current_user.username = form.username.data
@@ -97,7 +97,7 @@ def delete_user():
     if user.username != username:
         abort(403) #forbidden
     if user.image_file != 'default.jpg':
-        os.remove('logblog/static/profile_pictures/' + user.image_file)
+        os.remove('otter_den/static/profile_pictures/' + user.image_file)
     purge_posts(username) #TODO
     db.session.delete(user)
     db.session.commit()

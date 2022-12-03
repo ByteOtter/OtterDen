@@ -1,7 +1,7 @@
 #Copyright ByteOtter (c) 2021-2022
 
 from flask import render_template, request, Blueprint, session, redirect
-from logblog.models import Post
+from otter_den.models import Post
 
 main = Blueprint('main', __name__)
 
@@ -15,7 +15,7 @@ def home():
 
 @main.route("/about")
 def about():
-    return render_template('about.html', title = 'About LogBlog')
+    return render_template('about.html', title = 'About OtterDen')
 
 
 @main.route("/togge-theme")

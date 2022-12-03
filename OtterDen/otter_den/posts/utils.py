@@ -5,8 +5,8 @@ import secrets
 from PIL import Image
 from flask import current_app, abort, flash
 from flask_login import current_user
-from logblog import db
-from logblog.models import Post
+from otter_den import db
+from otter_den.models import Post
 
 
 def save_posted_picture(form_picture):
@@ -30,7 +30,7 @@ def delete_from_db(post_id, send_flash):
         abort(403) #forbidden
     #remove the picture included in the post if there is any
     if post.picture != None:
-        os.remove('logblog/static/posted_pictures/' + post.picture)
+        os.remove('otter_den/static/posted_pictures/' + post.picture)
     db.session.delete(post)
     db.session.commit()
     if send_flash:

@@ -5,7 +5,7 @@ import secrets
 from PIL import Image
 from flask import url_for, current_app
 from flask_mail import Message
-from logblog import mail
+from otter_den import mail
 
 # save image file the user updates. randomize the name to avoid cloissions with files the same name, split the extension off the filename and user "_" to throw away the unused filename
 def save_picture(form_picture):
@@ -26,7 +26,7 @@ def save_picture(form_picture):
 
 def send_reset_email(user):
     token = user.get_reset_token()
-    msg = Message('Password Reset Request', sender = 'info.logblog@gmail.com', recipients = [user.email])
+    msg = Message('Password Reset Request', sender = 'info.otter_den@gmail.com', recipients = [user.email])
     msg.body = f'''Hey, we have recieved a request to reset your password!
 Just follow this link:
 
@@ -35,6 +35,6 @@ Just follow this link:
 If you did not request a password reset, simply ignore this email.
 
 Love,
-Your LogBlog Mailer
+Your OtterDen Mailer
 '''
     mail.send(msg)
