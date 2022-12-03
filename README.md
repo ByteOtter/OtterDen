@@ -1,7 +1,9 @@
-# Welcome to OtterDen!
+# Welcome to The Otter Den!
 
-OtterDen is a small and very simple flask-based online blog. Its purpose is *not* to be publicly deployed but
-to serve as a pet project to learn how various aspects of software development and programming work.
+The Otter Den is a small and very simple flask-based online blog. Its purpose is *not* to be publicly deployed but
+to serve as a pet project to learn how various aspects of software development and programming work.<br>
+Further, The Otter Den will henceforth be referenced as OtterDen as this is less effort to type and it is a name
+used within the code aswell.
 
 A little bit about its history first: I started this project at the end of 2021 and began in earnest in early 2022
 using a series of tutorials by [Corey Schafer](https://www.youtube.com/@coreyms) I found on YouTube.<br>
