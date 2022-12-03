@@ -5,6 +5,7 @@ OtterDen/otter_den/static/profile_pictures/*
 !OtterDen/otter_den/static/profile_pictures/default.jpg
 
 OtterDen/otter_den/static/posted_pictures/*
+!OtterDen/otter_den/static/posted_pictures/.gitkeep
 env/*
 OtterDen/otter_den/*/__pycache__/
 OtterDen/otter_den/__pycache__/
