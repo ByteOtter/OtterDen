@@ -2,10 +2,10 @@
 
 from flask import render_template, url_for, flash, redirect, request, abort, Blueprint
 from flask_login import current_user, login_required
-from logblog import db
-from logblog.models import Post
-from logblog.posts.forms import PostForm
-from logblog.posts.utils import save_posted_picture, delete_from_db
+from otter_den import db
+from otter_den.models import Post
+from otter_den.posts.forms import PostForm
+from otter_den.posts.utils import save_posted_picture, delete_from_db
 
 posts = Blueprint('posts', __name__)
 

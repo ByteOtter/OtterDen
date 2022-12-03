@@ -1,12 +1,12 @@
-# Welcome to LogBlog!
+# Welcome to OtterDen!
 
-LogBlog is a small and very simple flask-based online blog. Its purpose is *not* to be publicly deployed but
+OtterDen is a small and very simple flask-based online blog. Its purpose is *not* to be publicly deployed but
 to serve as a pet project to learn how various aspects of software development and programming work.
 
 A little bit about its history first: I started this project at the end of 2021 and began in earnest in early 2022
 using a series of tutorials by [Corey Schafer](https://www.youtube.com/@coreyms) I found on YouTube.<br>
 While I used his great guide as a base my plan is to gradually build on top of it and experiment with different ideas
-and to really flesh out what LogBlog is.
+and to really flesh out what OtterDen is.
 
 Features I have added since finishing the tutorial course include:
 
@@ -20,15 +20,15 @@ All of this is still heavily WIP and I will update this list if I have time.
 
 ## Contributing
 
-If you read this I assume I made this repository public. If you would like to help build LogBlog
-please check the [Issues](https://github.com/ByteOtter/LogBlog/issues) section where I have a list of bugs and future features.<br>
+If you read this I assume I made this repository public. If you would like to help build OtterDen
+please check the [Issues](https://github.com/ByteOtter/OtterDen/issues) section where I have a list of bugs and future features.<br>
 Feel free to browse I am thankful for every contribution! :)
 
 Please refer to the [Contributing Guide](./docs/CONTRIBUTING.md) if you need any help.
 
 ## Security notice
 
-Please note that LogBlog **is not intended to be deployed in any capacity**. It is a learning project that is best hosted by
+Please note that OtterDen **is not intended to be deployed in any capacity**. It is a learning project that is best hosted by
 the greatest hosting service ever: `localhost`.
 
 Seriously, **security vulnarabilities are bound to be present**.

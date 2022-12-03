@@ -6,7 +6,7 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_mail import Mail
 
-from logblog.config import Config
+from otter_den.config import Config
 
 #TODO: if database is not present. Have the app create a database file.
 
@@ -30,11 +30,11 @@ def create_app(config_class=Config):
     login_manager.init_app(app)
     mail.init_app(app)
     # import Blueprint instances
-    from logblog.users.routes import users
-    from logblog.posts.routes import posts
-    from logblog.main.routes import main
+    from otter_den.users.routes import users
+    from otter_den.posts.routes import posts
+    from otter_den.main.routes import main
     # register error handlers with application
-    from logblog.errors.handlers import errors
+    from otter_den.errors.handlers import errors
     # register Blueprints to app
     app.register_blueprint(users)
     app.register_blueprint(posts)

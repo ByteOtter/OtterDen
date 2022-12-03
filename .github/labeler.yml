@@ -1,13 +1,13 @@
 # This file contains configurations for the labeler workflow
 
 python:
-- LogBlog/**/*.py
+- OtterDen/**/*.py
 
 html:
-- LogBlog/logblog/templates/**/*.html
+- OtterDen/otter_den/templates/**/*.html
 
 css:
-- LogBlog/**/*.css
+- OtterDen/**/*.css
 
 documentation:
 - README.md
@@ -32,10 +32,10 @@ dependencies:
 - requirements.txt
 
 usr-feature:
-- LogBlog/logblog/users/*
+- OtterDen/otter_den/users/*
 
 posts-feature:
-- LogBlog/logblog/posts/*
+- OtterDen/otter_den/posts/*
 
 templates:
-- LogBlog/logblog/templates/**/*
+- OtterDen/otter_den/templates/**/*
