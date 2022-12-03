@@ -1,6 +1,6 @@
 # Copyright 2021-2022 ByteOtter
 
-Feature: User should be able to create, view, edit and delete their own posts
+Feature: Create, view edit and delte posts
 
     Scenario: Login with test credentials
         Given I am logged in as "testsuite" with password "testsuite"

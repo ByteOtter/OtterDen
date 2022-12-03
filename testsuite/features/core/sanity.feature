@@ -2,7 +2,7 @@
 
 ### Sanity-Checks to test GUI Output ###
 
-Feature: Sanity checkt to test default GUI outputs
+Feature: Sanity checks
 
     Scenario: The home page
         Given I am on the "Home" page
@@ -13,12 +13,12 @@ Feature: Sanity checkt to test default GUI outputs
         And i should see a "Login" link in the navigaton bar
         And I should see a "Welcome to OtterDen" text
         And I should see a "A basic but solid online blog." text
-    
+
     Scenario: The about page
         Given I am on the "Home" page
         When I follow "About"
         Then I should see a "About" heading
-    
+
     Scenario: The registration form
         Given I am on the "Home" page
         And I follow "Register"
@@ -30,7 +30,7 @@ Feature: Sanity checkt to test default GUI outputs
         And I should see a "Sign Up" button
         And I should see a "Already have an account" text
         And I should see a "Sign In!" link
-    
+
     Scenario: The login form
         Given I am on the "Home" page
         And I follow "Login"
