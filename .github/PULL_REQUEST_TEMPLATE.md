@@ -25,6 +25,14 @@ after:
 
  - [ ] DONE
 
+## Links
+
+In case your changes fix an existing issue please link it below:
+
+Fixes:
+
+- [ ] DONE
+
 ## Documentation
 
 provide description about documentation done here or remove this line
