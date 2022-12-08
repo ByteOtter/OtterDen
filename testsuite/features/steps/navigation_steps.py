@@ -9,7 +9,7 @@ from test_utils import *
 def step_impl(context):
     context.browser.open("localhost:5000/home")
     context.browser.find_by_xpath("/html/body/header/nav/div/div/div[2]/a[1]")
-    context.browser.find_by_id("email").send_key("testsuite@otter_den.com")
+    context.browser.find_by_id("email").send_keys("testsuite@otter_den.com")
     context.browser.find_by_id("password").send_keys("testsuite")
 
 @when(u'I click on "{btn_identifier}"')
