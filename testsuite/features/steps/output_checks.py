@@ -5,18 +5,18 @@ from test_utils import *
 
 ### Step defintions to check OtterDens output ###
 
-@given(u'I am on the "(.?*)" page')
-def step_impl(context):
+@given(u'I am on the "{text}" page')
+def step_impl(context, text):
     pass
 
-@then(u'I should see a "(.?*)" text')
-def step_impl(context):
+@then(u'I should see a "{text}" text')
+def step_impl(context, text):
+    context.UtilFunc.find_by_name(text)
+
+@then(u'I should see a "{text}" link')
+def step_impl(context, text):
     pass
 
-@then(u'I should see a "(.?*)" link')
-def step_impl(context):
-    pass
-
-@then(u'I should see a "OtterDen" heading')
+@then(u'I should see a "{text}" heading')
 def step_impl(context):
     pass

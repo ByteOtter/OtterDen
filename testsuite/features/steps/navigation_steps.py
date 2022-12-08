@@ -12,14 +12,14 @@ def step_impl(context):
     context.browser.find_by_id("email").send_key("testsuite@otter_den.com")
     context.browser.find_by_id("password").send_keys("testsuite")
 
-@given(u'I am on the "(.*?)" page')
-def step_impl(context):
-    pass
-
-@when(u'I click on "(.*?)"')
+@when(u'I click on "{btn_identifier}"')
 def step_impl(context, btn_identifier):
     context.UtilFunc.find_by_id(btn_identifier).click()
 
-@when(u'I enter "(.*?)" as "(.?*)"')
+@when(u'I enter "{value}" as "{identifier}"')
 def step_impl(context, value, identifier):
     context.UtilFunc.find_by_id(identifier).send_keys(value)
+
+@when(u'I navigate to "{url}"')
+def step_impl(context, url):
+   context.UtilFunc.open(url)
