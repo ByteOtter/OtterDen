@@ -119,6 +119,18 @@ db.create_all(app=create_app())
 ```
 This will create the database file aswell as initialize the app.
 
+### Troubleshooting
+
+It may very well be, that you encounter two errors when trying to run the app using `python3 main.py`.
+
+The first thing is a `No Attribute Error`.<br>
+The stacktrace will tell you that there is not attribute `drivername` for a `NoneTypeObject`. This error occurs when the environment variable for the database path is not set up corrrectly. This can happen if the method you used to save this variable is user specific meaning that your current user can not access it.<br>
+Luckily this is easily circumvented by simply setting up this variable again or adding an `export` statement to your `.bashrc` file.
+
+The second error you may encounter is an `OperationalError`.<br>
+This error will tell you that there is no secret key the CSRF token can use.<br>
+To fix this you need to let python generate a 256-bit hex key which you save as a environment variable called `SECRET_KEY`. Once you do that this should fix this issue.
+
 That's it! You can now run `python3 main.py` while in the `Dev/OtterDen/OtterDen/` directory to run OtterDen! Good job! :)
 ***
 ## 3. Making Changes<a name="Contributing Changes"></a>
