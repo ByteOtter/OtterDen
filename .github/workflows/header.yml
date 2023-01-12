@@ -1,9 +1,9 @@
-- name: Header Comments CI
-  uses: AnandChowdhary/header-comments@v1.0.5
-  on:
-    push:
-      branches:
-        - main
+name: Header Comments CI
+uses: AnandChowdhary/header-comments@v1.0.5
+on:
+  push:
+    branches:
+      - main
   jobs:
     test:
       name: Add comments
