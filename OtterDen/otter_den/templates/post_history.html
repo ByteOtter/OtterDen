@@ -11,8 +11,8 @@
               <a class="mr-2" href="{{ url_for('users.show_user_post_history', username=post.author.username) }}">{{ post.author.username }}</a>
               <small class="text-muted">{{ post.date_posted.strftime("%Y-%m-%d, %H:%M") }}</small>
             </div>
-            <h2><a class="article-title" href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}</a></h2>
-            <p class="article-content">{{ post.content }}</p>
+            <h2><a class="article-title article-title-preview" href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}</a></h2>
+            <p class="article-content article-content-preview">{{ post.content }}</p>
           </div>
         </article>
     {% endfor %}

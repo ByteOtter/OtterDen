@@ -84,6 +84,14 @@ h1, h2, h3, h4, h5, h6 {
 
 .article-title {
   color: var(--article-title-color);
+  word-wrap: anywhere;
+}
+
+.article-title-preview {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 
 .article-title:hover {
@@ -94,6 +102,14 @@ h1, h2, h3, h4, h5, h6 {
 .article-content {
   color: var(--article-content-color);
   white-space: pre-line;
+  word-wrap: anywhere;
+}
+
+.article-content-preview {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 10;
+  -webkit-box-orient: vertical;
 }
 
 .article-img {
@@ -139,4 +155,3 @@ h1, h2, h3, h4, h5, h6 {
 .account-heading {
   font-size: 2.5rem;
 }
-
