@@ -30,7 +30,7 @@ def delete_from_db(post_id, send_flash):
         abort(403) #forbidden
     #remove the picture included in the post if there is any
     if post.picture != None:
-        os.remove('otter_den/static/posted_pictures/' + post.picture)
+        os.remove(os.path.join(current_app.root_path, 'static/posted_pictures', post.picture))
     db.session.delete(post)
     db.session.commit()
     if send_flash:
