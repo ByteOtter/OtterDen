@@ -4,7 +4,6 @@
 {% block content %}
     <h1>Welcome to The Otter Den</h1>
     Take a look around and feel yourself at home!
-    
     {% for post in posts.items %}
         <article class="media content-section">
             <img class="rounded-circle article-img" src="{{ url_for('static', filename = 'profile_pictures/' + post.author.image_file) }}">
