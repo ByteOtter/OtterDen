@@ -83,6 +83,18 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 20px;
 }
 
+.account-heading {
+  font-size: 2.5rem;
+}
+
+.account-img {
+  height: 125px;
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+  object-fit:cover;
+}
+
 .article-title {
   color: var(--article-title-color);
   word-wrap: anywhere;
@@ -137,14 +149,6 @@ h1, h2, h3, h4, h5, h6 {
   vertical-align: middle;
 }
 
-.account-img {
-  height: 125px;
-  width: 125px;
-  margin-right: 20px;
-  margin-bottom: 16px;
-  object-fit:cover;
-}
-
 .post-img {
   width: inherit;
   height: auto;
@@ -158,6 +162,7 @@ h1, h2, h3, h4, h5, h6 {
   max-height: 200px;
 }
 
+/* Expanded Image view on click */
 .modal-img {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
@@ -210,8 +215,4 @@ h1, h2, h3, h4, h5, h6 {
   .modal-content {
     width: 100%;
   }
-}
-
-.account-heading {
-  font-size: 2.5rem;
 }
