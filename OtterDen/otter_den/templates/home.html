@@ -15,6 +15,11 @@
                 </div>
                 <h2><a class="article-title article-title-preview" href="{{ url_for('posts.post', post_id = post.id) }}">{{ post.title }}</a></h2>
                 <p class="article-content article-content-preview">{{ post.content }}</p>
+                {% if post.picture %}
+                <div class="post-img post-img-preview">
+                    <img class="img-thumbnail" src="{{ url_for('static', filename='posted_pictures/' + post.picture) }}"></img>
+                </div>
+                {% endif %}
             </div>
         </article>
     {% endfor %}
