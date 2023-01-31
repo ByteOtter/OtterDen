@@ -146,11 +146,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .post-img {
-  height: 300px;
-  width: 300px;
-  margin-right: 20px;
-  margin-bottom: 16px;
-  object-fit:cover;
+  width: inherit;
+  height: auto;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  margin: 0;
+}
+
+.post-img-preview {
+  max-height: 200px;;
 }
 
 .account-heading {
