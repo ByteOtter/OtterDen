@@ -1,6 +1,6 @@
 # Copyright ByteOtter (c) 2021-2022
 
-from flask import render_template, url_for, abort, flash, redirect, request, Blueprint
+from flask import current_app, render_template, url_for, abort, flash, redirect, request, Blueprint
 from flask_login import login_user, current_user, logout_user, login_required
 from otter_den import db, bcrypt
 from otter_den.models import User, Post
@@ -69,7 +69,7 @@ def account():
         if form.picture.data:
             #if a picture file is given AND the current picture file is NOT default -> remove the old file
             if current_user.image_file != 'default.jpg' and current_user.image_file != None:
-                os.remove('otter_den/static/profile_pictures/' + current_user.image_file)
+                os.remove(os.path.join(current_app.root_path, 'static/profile_pictures', current_user.image_file))
             picture_file = save_picture(form.picture.data)
             current_user.image_file = picture_file
         current_user.username = form.username.data
@@ -97,7 +97,7 @@ def delete_user():
     if user.username != username:
         abort(403) #forbidden
     if user.image_file != 'default.jpg':
-        os.remove('otter_den/static/profile_pictures/' + user.image_file)
+        os.remove(os.path.join(current_app.root_path, 'static/profile_pictures', user.image_file))
     purge_posts(username) #TODO
     db.session.delete(user)
     db.session.commit()
