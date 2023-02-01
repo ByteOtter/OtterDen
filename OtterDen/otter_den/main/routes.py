@@ -1,4 +1,4 @@
-#Copyright ByteOtter (c) 2021-2022
+# Copyright ByteOtter (c) 2021-2023
 
 from flask import render_template, request, Blueprint, session, redirect
 from otter_den.models import Post
@@ -25,4 +25,4 @@ def toggle_theme():
         session["theme"] = "light"
     else:
         session["theme"] = "dark"
-    return redirect(request.args.get("current_page"))
+    return redirect(request.referrer)

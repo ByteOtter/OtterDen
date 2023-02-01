@@ -44,7 +44,7 @@ def login():
             login_user(user, remember=form.remember.data)
             flash(f'Welcome, {user.username}!', 'success')
             next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('main.home')) #redirect to the next page if it exists, else redirect to home.
+            return redirect(request.referrer) if request.referrer else redirect(url_for('main.home')) #redirect to the next page if it exists, else redirect to home.
         elif user == None:
             flash('Sorry, there is no user registered with this mail address.', 'danger')
         else:
