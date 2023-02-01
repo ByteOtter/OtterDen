@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     var postContent = document.getElementById("article-content");
-    document.getElementById("article-content").innerHTML = replaceURLs(postContent.textContent)
-    
+    let link = postContent.textContent;
+
     // find and replace urls within the content of a post and create a hyperlink to that website
     function replaceURLs(postContent) {
         if (!postContent) return;
@@ -15,4 +15,16 @@ document.addEventListener('DOMContentLoaded', function () {
             return '<a class="article-content-link" href="' + hyperlink + '" target="_blank" rel="noopener noreferrer">' + url + '</a>'
         });
     }
+
+    // escape meta characters to avoid XSS
+    function escapeHtml(link) {
+        return link
+         .replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;")
+         .replace(/"/g, "&quot;")
+         .replace(/'/g, "&#039;");
+    }
+
+    document.getElementById("article-content").innerHTML = replaceURLs(escapeHtml(link))
 }, false);
