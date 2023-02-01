@@ -20,7 +20,7 @@
     <!-- Import macros -->
     {% from "macros/svgs.html" import moon, sun %}
 
-    <!--Check if the title contains Profile/History (user on the profile/history page) and remove the OtterDen prefix to be able to read the username-->>
+    <!-- Check if the title contains Profile/History (user on the profile/history page) and remove the OtterDen prefix to be able to read the username -->>
     {% if title and 'Profile' not in title and not 'History' in title %}
     <title>OtterDen - {{ title }}</title>
     {% elif 'Profile' in title %}
@@ -32,7 +32,7 @@
     {% endif %}
 </head>
 <body>
-    <!--The Site header!-->
+    <!-- The Site header -->
     <header class="site-header">
         <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
             <div class="container">
@@ -85,7 +85,7 @@
                                 Register
                             </a>
                         {% endif %}
-                        <!--Allow user to switch between dark and lightmode-->
+                        <!-- Allow user to switch between dark and lightmode -->
                         <a class="nav-link float-right" href="{{ url_for('main.toggle_theme', current_page=request.path) }}">
                             <span class="nav-item">
                                 {% if theme == "dark" %}
