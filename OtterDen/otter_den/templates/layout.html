@@ -20,8 +20,11 @@
     <!-- Import macros -->
     {% from "macros/svgs.html" import moon, sun %}
 
-    {% if title %}
+    <!--Check if the title contains profile (user on the profile page) and remove the OtterDen prefix to be able to read the username-->>
+    {% if title and 'Profile' not in title %}
     <title>OtterDen - {{ title }}</title>
+    {% elif 'Profile -' in title %}
+    <title>Profile - {{user.username}}</title>
     {% else %}
     <title>OtterDen</title>
     {% endif %}

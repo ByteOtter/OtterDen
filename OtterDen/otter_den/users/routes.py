@@ -44,7 +44,7 @@ def login():
             login_user(user, remember=form.remember.data)
             flash(f'Welcome, {user.username}!', 'success')
             next_page = request.args.get('next')
-            return redirect(request.referrer) if request.referrer else redirect(url_for('main.home')) #redirect to the next page if it exists, else redirect to home.
+            return redirect(url_for('main.home')) #use static redirect to home page after login
         elif user == None:
             flash('Sorry, there is no user registered with this mail address.', 'danger')
         else:
@@ -147,7 +147,7 @@ def reset_password(token):
 @users.route("/user/<string:username>", methods = ['GET'])
 def user_profile(username):
     user = User.query.filter_by(username = username).first_or_404()
-    return render_template('user_profile.html', title = 'Profile - {user.username}', user = user)
+    return render_template('user_profile.html', title = 'Profile - ' + user.username, user = user)
 
 
 @users.route("/user/<string:username>/purge_posts", methods = ['POST'])
