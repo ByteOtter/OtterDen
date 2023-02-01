@@ -11,6 +11,8 @@
   --text-body: #444444;
   --text-body-muted: #e3e3e3;
 
+  --link-color: #26a53b;
+
   --background-color: #fafafa;
   --accent-color-hover: #27a93c;
   --metadata-color-hover: #2F2FB6;
@@ -35,6 +37,8 @@
   --text-heading: #F2F2F3;
   --text-body: #F2F2F3;
   --text-body-muted: #A5A5A6;
+
+  --link-color: #2fd44b;
 
   --background-color: #4C4C4D;
   --accent-color-hover: #ACACFF;
@@ -116,6 +120,10 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--article-content-color);
   white-space: pre-line;
   word-wrap: anywhere;
+}
+
+.article-content-link {
+  color: var(--link-color);
 }
 
 .article-content-preview {
