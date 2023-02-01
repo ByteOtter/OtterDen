@@ -3,6 +3,7 @@
 {% extends "layout.html" %}
 {% block content %}
 <script src="{{url_for('static', filename='scripts/gallery.js')}}"></script>
+<script src="{{url_for('static', filename='scripts/urlFinder.js')}}"></script>
   <article class="media content-section">
     <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pictures/' + post.author.image_file) }}">
     <div class="media-body">
@@ -41,7 +42,7 @@
         {% endif %}
       </div>
       <h2 class="article-title">{{ post.title }}</h2>
-      <p class="article-content">{{ post.content }}</p>
+      <div class="article-content" id="article-content">{{ post.content }}</div>
       {% if post.picture %}
       <div class="post-img">
         <img class="img-fluid" id="img-not-modal" src="{{ url_for('static', filename='posted_pictures/' + post.picture) }}"></img>
