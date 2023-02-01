@@ -44,7 +44,7 @@ def login():
             login_user(user, remember=form.remember.data)
             flash(f'Welcome, {user.username}!', 'success')
             next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('main.home')) #redirect to the next page if it exists, else redirect to home.
+            return redirect(url_for('main.home')) #use static redirect to home page after login
         elif user == None:
             flash('Sorry, there is no user registered with this mail address.', 'danger')
         else:
@@ -110,7 +110,7 @@ def show_user_post_history(username):
     page = request.args.get('page', 1, type = int)
     user = User.query.filter_by(username = username).first_or_404()
     posts = Post.query.filter_by(author=user).order_by(Post.date_posted.desc()).paginate(page = page, per_page = 10)
-    return render_template('post_history.html', posts = posts, user = user)
+    return render_template('post_history.html', title = 'History - ' + user.username, posts = posts, user = user)
 
 @users.route("/reset_password", methods = ['GET', 'POST'])
 def reset_request():
@@ -147,7 +147,7 @@ def reset_password(token):
 @users.route("/user/<string:username>", methods = ['GET'])
 def user_profile(username):
     user = User.query.filter_by(username = username).first_or_404()
-    return render_template('user_profile.html', title = 'Profile - {user.username}', user = user)
+    return render_template('user_profile.html', title = 'Profile - ' + user.username, user = user)
 
 
 @users.route("/user/<string:username>/purge_posts", methods = ['POST'])
