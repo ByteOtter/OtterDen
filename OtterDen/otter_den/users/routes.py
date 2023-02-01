@@ -110,7 +110,7 @@ def show_user_post_history(username):
     page = request.args.get('page', 1, type = int)
     user = User.query.filter_by(username = username).first_or_404()
     posts = Post.query.filter_by(author=user).order_by(Post.date_posted.desc()).paginate(page = page, per_page = 10)
-    return render_template('post_history.html', posts = posts, user = user)
+    return render_template('post_history.html', title = 'History - ' + user.username, posts = posts, user = user)
 
 @users.route("/reset_password", methods = ['GET', 'POST'])
 def reset_request():
