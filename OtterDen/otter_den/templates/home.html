@@ -5,22 +5,7 @@
     <h1>Welcome to The Otter Den</h1>
     Take a look around and feel yourself at home!
     {% for post in posts.items %}
-        <article class="media content-section">
-            <img class="rounded-circle article-img" src="{{ url_for('static', filename = 'profile_pictures/' + post.author.image_file) }}">
-            <div class="media-body">
-                <div class="article-metadata">
-                    <a class="mr-2" href="{{ url_for('users.user_profile', username = post.author.username) }}">{{ post.author.username }}</a>
-                    <small class="text-muted">{{ post.date_posted.strftime("%Y-%m-%d, %H:%M") }}</small>
-                </div>
-                <h2><a class="article-title article-title-preview" href="{{ url_for('posts.post', post_id = post.id) }}">{{ post.title }}</a></h2>
-                <p class="article-content article-content-preview">{{ post.content }}</p>
-                {% if post.picture %}
-                <div class="post-img post-img-preview">
-                    <img class="img-thumbnail" src="{{ url_for('static', filename='posted_pictures/' + post.picture) }}"></img>
-                </div>
-                {% endif %}
-            </div>
-        </article>
+        {% include 'post_preview.html' %}
     {% endfor %}
     <!--iterate over the pages we have. This will return None sometimes. When this happens show "..." so it does not print out hundreds of buttons. otherwise link to page.-->
     {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=4) %}

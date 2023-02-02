@@ -1,0 +1,20 @@
+<article class="media content-section">
+    <a id = "profile-preview" href="{{ url_for('users.user_profile', username = post.author.username) }}">
+        <img class="rounded-circle article-img" src="{{ url_for('static', filename = 'profile_pictures/' + post.author.image_file) }}">
+    </a>
+    <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="{{ url_for('users.user_profile', username = post.author.username) }}">{{ post.author.username }}</a>
+            <small class="text-muted">{{ post.date_posted.strftime("%Y-%m-%d, %H:%M") }}</small>
+        </div>
+        <h2><a class="article-title article-title-preview" href="{{ url_for('posts.post', post_id = post.id) }}">{{ post.title }}</a></h2>
+        <p class="article-content article-content-preview">{{ post.content }}</p>
+        {% if post.picture %}
+        <div class="post-img post-img-preview">
+            <a id = "picture-preview" href="{{ url_for('posts.post', post_id = post.id) }}">
+                <img class="img-thumbnail" src="{{ url_for('static', filename='posted_pictures/' + post.picture) }}"></img>
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</article>
