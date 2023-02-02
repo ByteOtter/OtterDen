@@ -20,9 +20,9 @@ on:
   schedule:
     - cron: '19 4 * * 4'
 
-  jobs:
-    analyze:
-      name: Analyze
+jobs:
+  analyze:
+    name: Analyze
     runs-on: ubuntu-latest
     permissions:
       actions: read
