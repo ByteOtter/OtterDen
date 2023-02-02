@@ -37,13 +37,11 @@ def post(post_id):
     else: return render_template('post.html', title = post.title, post = post, is_pinned = post.is_pinned)
 
 
-@posts.route("/post/<int:post_id>/pin")
+@posts.route("/post/<int:post_id>/pin", methods = ['POST', 'GET'])
 @login_required
 def pin_post(post_id):
-    is_pinned = request.args.get('is_pinned', type = bool)
-    print(is_pinned)
     post = Post.query.get_or_404(post_id)
-    post.is_pinned = is_pinned
+    post.is_pinned = not post.is_pinned
     print(post.is_pinned)
     db.session.commit()
     return render_template('post.html', title = post.title, post = post, is_pinned = post.is_pinned)
