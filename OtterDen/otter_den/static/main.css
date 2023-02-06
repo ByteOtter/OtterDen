@@ -172,8 +172,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Mask for preview images */
 .post-img-preview img{
-  -webkit-mask-image:-webkit-linear-gradient(top, bottom, rgba(0,0,0,1) 150px, rgba(0,0,0,0) 200px);
-      mask-image: linear-gradient(to bottom,  rgba(0,0,0,1) 150px, rgba(0,0,0,0) 200px);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 150px, rgba(0,0,0,0) 200px);
 }
 
 /* Expanded Image view on click */
