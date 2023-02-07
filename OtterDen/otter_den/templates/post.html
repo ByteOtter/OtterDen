@@ -46,7 +46,7 @@
       <div class="article-content" id="article-content">{{ post.content }}</div>
       {% if post.picture %}
       <div class="post-img">
-        <img class="img-fluid" id="img-not-modal" src="{{ url_for('static', filename='posted_pictures/' + post.picture) }}"></img>
+        <img class="img-fluid mt-2" id="img-not-modal" src="{{ url_for('static', filename='posted_pictures/' + post.picture) }}"></img>
         <div id="modal-img" class="modal-img">
           <span class="close" id="close-button">&times;</span>
           <img class="modal-img-content" id="img-modal">

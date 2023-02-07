@@ -5,7 +5,7 @@ from flask_login import current_user, login_required
 from otter_den import db
 from otter_den.models import Post
 from otter_den.posts.forms import PostForm
-from otter_den.posts.utils import save_posted_picture, delete_from_db
+from otter_den.posts.utils import save_posted_picture, delete_from_db, delete_post_picture
 
 posts = Blueprint('posts', __name__)
 
@@ -58,6 +58,8 @@ def edit_post(post_id):
     posted_picture = post.picture
     if form.validate_on_submit():
         if form.picture.data:
+            if post.picture:
+                delete_post_picture(post.picture)
             posted_picture = save_posted_picture(form.picture.data)
         post.title = form.title.data
         post.content = form.content.data

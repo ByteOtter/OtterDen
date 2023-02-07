@@ -36,3 +36,5 @@ def delete_from_db(post_id, send_flash):
     if send_flash:
         flash('Your post has been deleted!', 'success')
 
+def delete_post_picture(post_picture):
+    os.remove(os.path.join(current_app.root_path, 'static/posted_pictures', post_picture))
