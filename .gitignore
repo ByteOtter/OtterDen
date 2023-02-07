@@ -9,6 +9,8 @@ OtterDen/otter_den/static/posted_pictures/*
 env/*
 OtterDen/otter_den/*/__pycache__/
 OtterDen/otter_den/__pycache__/
-
 testsuite/test_utils/__pycache__/
 testsuite/geckodriver.log
+migrations/__pycache__/
+migrations/versions/__pycache__/
+

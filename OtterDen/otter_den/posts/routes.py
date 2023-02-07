@@ -31,6 +31,8 @@ def new_post():
 def post(post_id):
     #get post with post_id or throw 404
     post = Post.query.get_or_404(post_id)
+    if post.author.hide_posts and not current_user.is_authenticated :
+        abort(403)
     if post.picture != None:
         image_file = url_for('static', filename = 'posted_pictures/' + post.picture)
         return render_template('post.html', title = post.title, post = post, picture = post.picture)
