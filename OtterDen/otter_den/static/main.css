@@ -23,6 +23,9 @@
   --border: 3px solid #dddddd;
   --content-border: 1px solid #dddddd;
 
+  --warning-color: #ff0000;
+  --warning-border: 2px #ff0000 dashed;
+
 }
 
 :root.dark-mode {
@@ -49,6 +52,9 @@
 
   --border: 3px solid #696969;
   --content-border: 1px solid #696969;
+
+  --warning-color: #ff0000;
+  --warning-border: 2px #ff0000 dashed;
 }
 
 body {
@@ -103,13 +109,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .danger-text {
   margin-left: 2px;
-  color: #ff0000;
+  color: var(--warning-color);
 }
 
 .danger-text-box {
   padding-bottom: 1px;
   margin-bottom: 4px;
-  border: 2px #ff0000 dashed;
+  border: var(--warning-border);
 }
 
 .account-heading {
@@ -198,6 +204,23 @@ h1, h2, h3, h4, h5, h6 {
 /* Mask for preview images */
 .post-img-preview img{
   -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 150px, rgba(0,0,0,0) 200px);
+}
+
+.modal-content {
+  background-color: var(--site-background)
+}
+
+.modal-heading-danger {
+  color: var(--warning-color);
+}
+
+.modal-text {
+  background-color: var(--article-content-color);
+  color: var(--article-content-color);
+}
+
+.modal-icon-warning {
+  color: var(--warning-color)
 }
 
 /* Expanded Image view on click */
