@@ -5,7 +5,9 @@
     <h1>Welcome to The Otter Den</h1>
     Take a look around and feel yourself at home!
     {% for post in posts.items %}
+    {% if not post.author.hide_posts or current_user.is_authenticated %}
         {% include 'post_preview.html' %}
+    {% endif %}
     {% endfor %}
     <!--iterate over the pages we have. This will return None sometimes. When this happens show "..." so it does not print out hundreds of buttons. otherwise link to page.-->
     {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=4) %}

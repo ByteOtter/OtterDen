@@ -66,14 +66,16 @@
                 </div>
                 <!-- PRIVACY OPTIONS! -->
                 <h5>Your privacy is important - protect it!</h5>
-                <div class="form check form-switch" id="hideMailAdressSwitch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="hideMailAdress" checked>
+                <div class="form check form-switch" id="hideMailAdress">
+                    <!-- <input class="form-check-input" type="checkbox" role="switch" id="hideMailAdress"> -->
+                    {{ form.hide_email(class="form-check-input") }}
                     <label class="form-check-label" for="fkexSwitchCheckChecked">Hide my e-mail adress
                         <text class="text-secondary">(default: on)</text>
                     </label>
                 </div>
-                <div class="form check form-switch" id="hideMailAdressSwitch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="hideMailAdress" unchecked>
+                <div class="form check form-switch" id="hidePosts">
+                    <!-- <input class="form-check-input" type="checkbox" role="switch" id="hideMailAdress"> -->
+                    {{ form.hide_posts(class="form-check-input") }}
                     <label class="form-check-label" for="fkexSwitchCheckChecked">Keep my posts private. <text class="text-secondary">(default: off)
                         <br>Logged in users can still see you posts.</text>
                     </label>
@@ -84,7 +86,7 @@
                 {{ form.submit(class = "btn btn-info") }}
             </div>
         </form>
-        <div class = "danger-text-box mt-2">
+        <div class = "text-box danger-text-box mt-2">
             <h6 class="danger-text mt-2 ml-1">Danger Zone!</h6>
             <button type="button" class="btn btn-danger btn-sm ml-1 mb-2" data-toggle="modal" data-target="#deleteModal">Delete Profile</button>
         </div>

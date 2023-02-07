@@ -1,4 +1,4 @@
-# Copyright ByteOtter (c) 2021-2022
+# Copyright ByteOtter (c) 2021-2023
 
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
@@ -39,6 +39,8 @@ class UpdateAccountInfoForm(FlaskForm):
     email = StringField('Email', validators = [DataRequired(), Email()])
     picture = FileField('Update Avatar', validators = [FileAllowed(['jpg', 'jpeg', 'png', 'webp', 'gif'])])
     biography = StringField('About you (max 250 characters)', validators = [Length(max = 250)])
+    hide_email = BooleanField('', default="checked")
+    hide_posts = BooleanField('', default="unchecked")
     submit = SubmitField('Update your info!')
 
     # check if username already in use

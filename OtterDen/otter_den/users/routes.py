@@ -75,6 +75,8 @@ def account():
         current_user.username = form.username.data
         current_user.email = form.email.data
         current_user.biography = form.biography.data
+        current_user.hide_email = form.hide_email.data
+        current_user.hide_posts = form.hide_posts.data
         db.session.commit()
         flash('Your account information has been updated!', 'success')
         return redirect(url_for('users.account'))
@@ -83,6 +85,8 @@ def account():
         form.username.data = current_user.username
         form.email.data = current_user.email
         form.biography.data = current_user.biography
+        form.hide_email.data = current_user.hide_email
+        form.hide_posts.data = current_user.hide_posts
     #set user profile picture as default.jpg when none is uploaded and pass to account template
     image_file = url_for('static', filename = 'profile_pictures/' + current_user.image_file)
     return render_template('account.html', title = 'My Account', image_file = image_file, form = form)
@@ -109,6 +113,8 @@ def delete_user():
 def show_user_post_history(username):
     page = request.args.get('page', 1, type = int)
     user = User.query.filter_by(username = username).first_or_404()
+    if user.hide_posts and not current_user.is_authenticated :
+        abort(403)
     posts = Post.query.filter_by(author=user).order_by(Post.date_posted.desc()).paginate(page = page, per_page = 10)
     return render_template('post_history.html', title = 'History - ' + user.username, posts = posts, user = user)
 

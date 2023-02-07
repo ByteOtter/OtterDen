@@ -24,7 +24,7 @@
   --content-border: 1px solid #dddddd;
 
   --warning-color: #ff0000;
-  --warning-border: 2px #ff0000 dashed;
+  --textbox-border: 2px #747171 dashed;
 
 }
 
@@ -54,7 +54,7 @@
   --content-border: 1px solid #696969;
 
   --warning-color: #ff0000;
-  --warning-border: 2px #ff0000 dashed;
+  --textbox-border: 2px #747171 dashed;
 }
 
 body {
@@ -112,10 +112,14 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--warning-color);
 }
 
-.danger-text-box {
+.text-box {
   padding-bottom: 1px;
   margin-bottom: 4px;
-  border: var(--warning-border);
+  border: var(--textbox-border);
+}
+
+.danger-text-box {
+  border-color: var(--warning-color);
 }
 
 .account-heading {
