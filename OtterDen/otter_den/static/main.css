@@ -101,6 +101,17 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 20px;
 }
 
+.danger-text {
+  margin-left: 2px;
+  color: #ff0000;
+}
+
+.danger-text-box {
+  padding-bottom: 1px;
+  margin-bottom: 4px;
+  border: 2px #ff0000 dashed;
+}
+
 .account-heading {
   font-size: 2.5rem;
 }
