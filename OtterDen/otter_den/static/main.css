@@ -78,6 +78,20 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
 }
 
+.dropdown:hover .dropdown-menu {
+  background-color: var(--site-header-color);
+  display: block;
+  margin-top: 0;
+}
+
+.dropdown-item {
+  color: var(--navbar-text-color);
+}
+
+.dropdown-divider {
+  color: var(--article-content-color);
+}
+
 .content-section {
   /* color: var(--article-content-color);*/
   background: var(--background-color);
@@ -85,6 +99,17 @@ h1, h2, h3, h4, h5, h6 {
   border: var(--content-border);
   border-radius: 3px;
   margin-bottom: 20px;
+}
+
+.danger-text {
+  margin-left: 2px;
+  color: #ff0000;
+}
+
+.danger-text-box {
+  padding-bottom: 1px;
+  margin-bottom: 4px;
+  border: 2px #ff0000 dashed;
 }
 
 .account-heading {

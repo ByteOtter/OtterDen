@@ -64,14 +64,30 @@
                         {% endfor %}
                     {% endif %}
                 </div>
+                <!-- PRIVACY OPTIONS! -->
+                <h5>Your privacy is important - protect it!</h5>
+                <div class="form check form-switch" id="hideMailAdressSwitch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="hideMailAdress" checked>
+                    <label class="form-check-label" for="fkexSwitchCheckChecked">Hide my e-mail adress
+                        <text class="text-secondary">(default: on)</text>
+                    </label>
+                </div>
+                <div class="form check form-switch" id="hideMailAdressSwitch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="hideMailAdress" unchecked>
+                    <label class="form-check-label" for="fkexSwitchCheckChecked">Keep my posts private. <text class="text-secondary">(default: off)
+                        <br>Logged in users can still see you posts.</text>
+                    </label>
+                </div>
             </fieldset>
             <div class = "form-group">
                 <a class="btn btn-secondary" href="{{ url_for('main.home') }}">Cancel</a>
                 {{ form.submit(class = "btn btn-info") }}
             </div>
         </form>
-        <div class = "article-metadata text-secondary mt-2">Danger Zone!</div>
-        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal">Delete Profile</button>
+        <div class = "danger-text-box mt-2">
+            <h6 class="danger-text mt-2 ml-1">Danger Zone!</h6>
+            <button type="button" class="btn btn-danger btn-sm ml-1 mb-2" data-toggle="modal" data-target="#deleteModal">Delete Profile</button>
+        </div>
     </div>
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -84,7 +100,6 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <!--it can't grab the username for some reason-->
           <form action="{{ url_for('users.delete_user', username=username) }}" method="POST">
             <input class="btn btn-danger" type="submit" value="Delete">
           </form>
