@@ -22,9 +22,9 @@
     {% endif %}
     <!--if the user has posts pinned: show the pinned posts-->
     {% if not user.hide_posts or current_user.is_authenticated %}
+        <h3>{{ user.username }}'s favourite posts</h3>
         {% for post in user.posts %}
             {% if post.is_pinned %}
-                <h3>{{ user.username }}'s favourite posts</h3>
                 {% include 'post_preview.html' %}
             {% endif %}
         {% endfor %}
