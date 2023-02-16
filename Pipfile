@@ -5,8 +5,10 @@ name = "pypi"
 
 [packages]
 flask = "*"
+Werkzeug = ">=2.2.3"
 
 [dev-packages]
+Werkzeug = ">=2.2.3"
 
 [requires]
 python_version = "3.8"
