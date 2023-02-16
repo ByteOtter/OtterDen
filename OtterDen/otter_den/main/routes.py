@@ -18,7 +18,7 @@ def about():
     return render_template('about.html', title = 'About')
 
 
-@main.route("/togge-theme")
+@main.route("/toggle-theme")
 def toggle_theme():
     current_theme = session.get("theme")
     if current_theme == "dark":
@@ -26,3 +26,7 @@ def toggle_theme():
     else:
         session["theme"] = "dark"
     return redirect(request.referrer)
+
+@main.route("/license")
+def license():
+    return render_template('license.html', title = 'License')

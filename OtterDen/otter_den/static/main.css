@@ -192,6 +192,10 @@ h1, h2, h3, h4, h5, h6 {
   vertical-align: middle;
 }
 
+.static-site-text {
+  color: var(--article-content-color);
+}
+
 .post-img {
   width: inherit;
   height: auto;
