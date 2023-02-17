@@ -8,9 +8,9 @@
     Nobody here but us.
     </center>
     {% elif posts.total == 1 %}
-    <small class="text-muted">We found just a single post for topic {{ topic }}</small>
+    <small class="text-muted">We found just a single post in {{ topic }}</small>
     {% else %}
-    <small class="text-muted">We found {{ posts.total }} for topic {{ topic }}</small>
+    <small class="text-muted">We found {{ posts.total }} in {{ topic }}</small>
     {% endif %}
     {% for post in posts.items %}
     {% if not post.author.hide_posts or current_user.is_authenticated %}
