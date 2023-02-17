@@ -1,0 +1,35 @@
+<!--Copyright ByteOtter (c) 2023-->
+
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Topic: {{ topic }}</h1>
+    {% if posts.total == 0 %}
+    <center>
+    Nobody here but us.
+    </center>
+    {% elif posts.total == 1 %}
+    <small class="text-muted">We found just a single post for topic {{ topic }}</small>
+    {% else %}
+    <small class="text-muted">We found {{ posts.total }} for topic {{ topic }}</small>
+    {% endif %}
+    {% for post in posts.items %}
+    {% if not post.author.hide_posts or current_user.is_authenticated %}
+        {% include 'post_preview.html' %}
+    {% endif %}
+    {% endfor %}
+    <!--iterate over the pages we have. This will return None sometimes. When this happens show "..." so it does not print out hundreds of buttons. otherwise link to page.-->
+    {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=4) %}
+        {% if page_num %}
+            {% if page_num %}
+                <!-- Fill the current page button. -->
+                {% if posts.page == page_num %}
+                    <a class="btn btn-info mb-4" href="{{ url_for('main.topic_channel', topic=topic, page=page_num) }}">{{ page_num }}</a>
+                {% else %}
+                    <a class="btn btn-outline-info mb-4" href="{{ url_for('main.topic_channel', topic=topic, page=page_num) }}">{{ page_num }}</a>
+                {% endif %}
+            {% endif %}
+        {% else %}
+            ...
+        {% endif %}
+    {% endfor %}
+{% endblock content %}
