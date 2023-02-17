@@ -11,6 +11,14 @@
       <div class="article-metadata">
         <a class="mr-2" href="{{ url_for('users.user_profile', username=post.author.username) }}">{{ post.author.username }}</a>
         <small class="text-muted">{{ post.date_posted.strftime("%Y-%m-%d, %H:%M") }}</small>
+        <small class="article-metadata ml-auto" id="topic" id="topic-label" style="float:right">
+          Topic:
+          {% if post.topic == None or post.topic == '' %}
+            Undefined
+          {% else %}
+            {{ post.topic }}
+          {% endif %}
+        </small>
         {% if post.author == current_user %}
           <div>
             <a class="btn btn-primary btn-sm mt-1 mb-1" href="{{ url_for('posts.edit_post', post_id=post.id) }}">

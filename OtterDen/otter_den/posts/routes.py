@@ -16,10 +16,11 @@ def new_post():
     form = PostForm()
     post = Post()
     posted_picture = None
+    topic = None
     if form.validate_on_submit():
         if form.picture.data:
             posted_picture = save_posted_picture(form.picture.data)
-        post = Post(title = form.title.data, content = form.content.data, author = current_user, picture = posted_picture)
+        post = Post(title = form.title.data, content = form.content.data, author = current_user, picture = posted_picture, topic = form.topic.data)
         db.session.add(post)
         db.session.commit()
         flash('Your post has been shared!', 'success')
