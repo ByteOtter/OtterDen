@@ -20,6 +20,9 @@ def about():
 @main.route("/topic/<string:topic>")
 def topic_channel(topic):
     page = request.args.get('page', 1, type=int)
+    if topic == 'Undefined':
+        posts = Post.query.filter_by(topic='').order_by(Post.date_posted.desc()).paginate(page=page, per_page=10)
+        return render_template('topic_channel.html', topic = 'Undefined', title = 'Misc', posts = posts)
     posts = Post.query.filter_by(topic=topic).order_by(Post.date_posted.desc()).paginate(page=page, per_page=10)
     return render_template('topic_channel.html',topic = topic, title = topic, posts = posts)
 
