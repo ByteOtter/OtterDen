@@ -16,10 +16,11 @@ def new_post():
     form = PostForm()
     post = Post()
     posted_picture = None
+    topic = None
     if form.validate_on_submit():
         if form.picture.data:
             posted_picture = save_posted_picture(form.picture.data)
-        post = Post(title = form.title.data, content = form.content.data, author = current_user, picture = posted_picture)
+        post = Post(title = form.title.data, content = form.content.data, author = current_user, picture = posted_picture, topic = form.topic.data)
         db.session.add(post)
         db.session.commit()
         flash('Your post has been shared!', 'success')
@@ -66,6 +67,7 @@ def edit_post(post_id):
         post.title = form.title.data
         post.content = form.content.data
         post.picture = posted_picture
+        post.topic = form.topic.data
         db.session.commit()
         flash('Your post has been updated!', 'success')
         return redirect(url_for('posts.post', post_id = post.id))

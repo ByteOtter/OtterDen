@@ -40,10 +40,14 @@
                     {{ form.picture(class = "form-control-file") }}
                     {% if form.picture.errors %}
                         {% for error in form.media.errors %}
-                            <span class "text-danger">{{ error }}</span></br>
+                            <span class="text-danger">{{ error }}</span></br>
                         {% endfor %}
                     {% endif %}
                 {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.topic.label() }} <br>
+                    {{ form.topic(class = "dropdown") }}
                 </div>
             </fieldset>
             <div class = "form-group">

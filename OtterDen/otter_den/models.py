@@ -52,6 +52,7 @@ class Post(db.Model):
     content = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) #ID of the author.
     is_pinned = db.Column(db.Boolean, default=False)
+    topic = db.Column(db.String(15), nullable=True)
 
     def __repr__(self):
-        return f"Post('{self.title}', '{self.date_posted}')"
+        return f"Post('{self.title}', '{self.date_posted}', '{self.topic}')"
