@@ -19,6 +19,9 @@ Features I have added since finishing the tutorial course include:
 - Dedicated profile page for individual users
 - Post history page to see all posts of a user
 - Set up selenium and behave testsuite to automate future testing
+- Tagging and filtering of posts
+- Rudimentary privacy options
+- Auto detectio of URLs in Posts
 
 All of this is still heavily WIP and I will update this list if I have time.
 
