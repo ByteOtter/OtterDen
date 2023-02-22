@@ -3,12 +3,12 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
-from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, Regexp
 from flask_login import current_user
 from otter_den.models import User
 
 class RegistrationForm(FlaskForm):
-    username = StringField('Username', validators = [DataRequired(), Length(min = 5, max = 20)])
+    username = StringField('Username', validators = [DataRequired(), Length(min = 5, max = 20), Regexp('[^\s]{5,20}', message="Username cannot contain whitespaces!")])
     email = StringField('Email', validators = [DataRequired(), Email()])
     password = PasswordField('Password', validators = [DataRequired(), Length(min = 5)])
     confirm_password = PasswordField('Confirm Password', validators = [DataRequired(), EqualTo('password', message = "Your passwords do not match!")])
@@ -35,7 +35,7 @@ class LoginForm(FlaskForm):
 
 
 class UpdateAccountInfoForm(FlaskForm):
-    username = StringField('Username', validators = [DataRequired(), Length(min = 5, max = 20)])
+    username = StringField('Username', validators = [DataRequired(), Length(min = 5, max = 20), Regexp('\s{5, 20}', message="Username cannot contain whitespaces!")])
     email = StringField('Email', validators = [DataRequired(), Email()])
     picture = FileField('Update Avatar', validators = [FileAllowed(['jpg', 'jpeg', 'png', 'webp', 'gif'])])
     biography = StringField('About you (max 250 characters)', validators = [Length(max = 250)])
