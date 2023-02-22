@@ -98,6 +98,11 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--article-content-color);
 }
 
+.search {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
 .content-section {
   /* color: var(--article-content-color);*/
   background: var(--background-color);
