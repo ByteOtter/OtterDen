@@ -11,7 +11,7 @@ main = Blueprint('main', __name__)
 @main.route("/home")
 def home():
     page = request.args.get('page', 1, type = int)
-    posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
+    posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=15)
     return render_template('home.html', title = 'Home', posts = posts)
 
 
@@ -23,9 +23,9 @@ def about():
 def topic_channel(topic):
     page = request.args.get('page', 1, type=int)
     if topic == 'Undefined':
-        posts = Post.query.filter_by(topic='').order_by(Post.date_posted.desc()).paginate(page=page, per_page=10)
+        posts = Post.query.filter_by(topic='').order_by(Post.date_posted.desc()).paginate(page=page, per_page=15)
         return render_template('topic_channel.html', topic = 'Undefined', title = 'Misc', posts = posts)
-    posts = Post.query.filter_by(topic=topic).order_by(Post.date_posted.desc()).paginate(page=page, per_page=10)
+    posts = Post.query.filter_by(topic=topic).order_by(Post.date_posted.desc()).paginate(page=page, per_page=15)
     return render_template('topic_channel.html',topic = topic, title = topic, posts = posts)
 
 
@@ -46,9 +46,10 @@ def license():
 @main.route("/search/<string:query>", methods=['GET', 'POST'])
 def search(query):
     form = SearchForm()
+
     if form.validate_on_submit():
         page = request.args.get('page', 1, type = int)
-        posts = search_db(query).order_by(Post.date_posted.dec()).paginate(page=page, per_page=10) # replace with custom search function in a utils.py file
+        posts = search_db(query).order_by(Post.date_posted.dec()).paginate(page=page, per_page=10)
         return render_template('search_results.html', form=form, query = query, posts = posts)
     else:
-        return redirect(url_for('main.home'))
+        return redirect(url_for('main.about'))

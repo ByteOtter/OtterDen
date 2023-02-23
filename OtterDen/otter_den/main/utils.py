@@ -16,10 +16,11 @@ from otter_den.models import Post, User
 def search_db(query):
   search_string = query;
   is_user_query = re.search("\buser:[\S]+", query)
-  only_with_images = re.search("image:true", query)
+  only_with_images = re.search("\bimage:true", query)
   topic_filter = re.search("\btopic:[\S]+", query)
 
   if is_user_query:
+    # is_user_query.group() returns the string "user:<username>". Split and take 2nd element <username>
     username = is_user_query.group().split(":")[1]
     user = User.query.filter_by(username=username)
     posts = Post.query.filter_by(author=username)
