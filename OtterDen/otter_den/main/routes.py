@@ -42,7 +42,7 @@ def license():
     return render_template('license.html', title = 'License')
 
 # TODO:
-@main.route("/search/<string:query>", methods=['GET'])
+@main.route("/search=<string:query>", methods=['GET'])
 def search():
     query = request.args.get('search')
     page = request.args.get('page', 1, type = int)
