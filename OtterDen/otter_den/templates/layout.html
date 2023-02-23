@@ -43,7 +43,8 @@
                 <div class="collapse navbar-collapse" id="navbarToggle">
                     <div class="navbar-nav mr-auto">
                         <a class="nav-item nav-link" href="{{ url_for('main.home') }}">Home</a>
-                        <div class="dropdown" id="profile_dropdown">
+                        <!--Topic channel dropdown-->
+                        <div class="dropdown" id="channel_dropdown">
                             <a class="nav-item nav-link dropdown-toggle" href="#" type="button" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Topics
                             </a>
@@ -78,10 +79,15 @@
                                 </a>
                             </div>
                         </div>
-                        <input class="search" type="text" id="searchbar" placeholder="Search the Den..." />
+                    </div>
+                     <!--Searchbar-->
+                    <div class="navbar-nav">
+                        <form class="search" method="GET, POST" action="{{ url_for('main.search', query = 'searchbar.value') }}">
+                          <input class="nav-item" type="text submit" id="searchbar" placeholder="Search the Den..." on_submit="{{ url_for('main.search', query='{{ searchbar.value }}') }}"/>
+                        </form>
                     </div>
                     <!-- Navbar Right Side -->
-                    <div class="navbar-nav">
+                    <div class="navbar-nav ml-auto">
                         {% if current_user.is_authenticated %}
                             <a class="nav-item nav-link" href="{{ url_for('posts.new_post') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-vector-pen" viewBox="0 0 16 16">

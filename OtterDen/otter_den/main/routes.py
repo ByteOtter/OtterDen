@@ -1,7 +1,9 @@
 # Copyright ByteOtter (c) 2021-2023
 
-from flask import render_template, request, Blueprint, session, redirect
+from flask import render_template, redirect, url_for, request, Blueprint, session
 from otter_den.models import Post
+from otter_den.main.forms import SearchForm
+from otter_den.main.utils import search_db
 
 main = Blueprint('main', __name__)
 
@@ -39,3 +41,14 @@ def toggle_theme():
 @main.route("/license")
 def license():
     return render_template('license.html', title = 'License')
+
+# TODO:
+@main.route("/search/<string:query>", methods=['GET', 'POST'])
+def search(query):
+    form = SearchForm()
+    if form.validate_on_submit():
+        page = request.args.get('page', 1, type = int)
+        posts = search_db(query).order_by(Post.date_posted.dec()).paginate(page=page, per_page=10) # replace with custom search function in a utils.py file
+        return render_template('search_results.html', form=form, query = query, posts = posts)
+    else:
+        return redirect(url_for('main.home'))
