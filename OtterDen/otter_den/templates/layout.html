@@ -82,8 +82,8 @@
                     </div>
                      <!--Searchbar-->
                     <div class="navbar-nav">
-                        <form class="search" method="GET, POST" action="{{ url_for('main.search', query = 'searchbar.value') }}">
-                          <input class="nav-item" type="text submit" id="searchbar" placeholder="Search the Den..." on_submit="{{ url_for('main.search', query='{{ searchbar.value }}') }}"/>
+                        <form class="search" method="GET">
+                          <input class="form-control" type="search submit" placeholder="Search the Den..." name="search" value="">
                         </form>
                     </div>
                     <!-- Navbar Right Side -->
