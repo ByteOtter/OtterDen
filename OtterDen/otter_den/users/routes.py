@@ -72,9 +72,9 @@ def account():
                 os.remove(os.path.join(current_app.root_path, 'static/profile_pictures', current_user.image_file))
             picture_file = save_picture(form.picture.data)
             current_user.image_file = picture_file
-        current_user.username = form.username.data
-        current_user.email = form.email.data
-        current_user.biography = form.biography.data
+        current_user.username = form.username.data.strip()
+        current_user.email = form.email.data.strip()
+        current_user.biography = form.biography.data.strip()
         current_user.hide_email = form.hide_email.data
         current_user.hide_posts = form.hide_posts.data
         db.session.commit()
@@ -82,7 +82,7 @@ def account():
         return redirect(url_for('users.account'))
     #populate form with current username and email
     elif request.method == 'GET':
-        form.username.data = current_user.username
+        form.username.data = current_user.username.strip()
         form.email.data = current_user.email
         form.biography.data = current_user.biography
         form.hide_email.data = current_user.hide_email

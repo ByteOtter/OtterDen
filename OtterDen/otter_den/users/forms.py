@@ -35,7 +35,7 @@ class LoginForm(FlaskForm):
 
 
 class UpdateAccountInfoForm(FlaskForm):
-    username = StringField('Username', validators = [DataRequired(), Length(min = 5, max = 20), Regexp('\s{5, 20}', message="Username cannot contain whitespaces!")])
+    username = StringField('Username', validators = [DataRequired(), Length(min = 5, max = 20), Regexp('[^\s]', message="Username cannot contain whitespaces!")])
     email = StringField('Email', validators = [DataRequired(), Email()])
     picture = FileField('Update Avatar', validators = [FileAllowed(['jpg', 'jpeg', 'png', 'webp', 'gif'])])
     biography = StringField('About you (max 250 characters)', validators = [Length(max = 250)])
