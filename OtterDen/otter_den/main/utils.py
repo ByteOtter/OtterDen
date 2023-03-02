@@ -1,8 +1,6 @@
 # Copyright ByteOtter (c) 2023
 
 import re
-from flask import current_app, abort, flash
-from flask_login import current_user
 from otter_den import db
 from otter_den.models import Post, User
 
