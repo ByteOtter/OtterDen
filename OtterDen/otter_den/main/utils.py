@@ -24,7 +24,15 @@ def search_db(query):
   else:
     search_phrase = query
 
-  if is_user_query:
+  if not is_user_query and not only_with_images and not topic_filter:
+    posts = Post.query()
+    results = []
+    for post in posts:
+      if search_phrase in post.content:
+        results.append(post)
+      elif search_phrase in post.title:
+        results.append(post)
+  elif is_user_query:
     # is_user_query.group() returns the string "user:<username>". Split and take 2nd element <username>
     username = is_user_query.group().split(":")[1]
     user = User.query.filter_by(username=username)
