@@ -1,7 +1,8 @@
 # Copyright ByteOtter (c) 2021-2023
 
-from flask import render_template, request, Blueprint, session, redirect
+from flask import render_template, redirect, url_for, request, Blueprint, session
 from otter_den.models import Post
+from otter_den.main.utils import search_db
 
 main = Blueprint('main', __name__)
 
@@ -9,7 +10,7 @@ main = Blueprint('main', __name__)
 @main.route("/home")
 def home():
     page = request.args.get('page', 1, type = int)
-    posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
+    posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=15)
     return render_template('home.html', title = 'Home', posts = posts)
 
 
@@ -21,9 +22,9 @@ def about():
 def topic_channel(topic):
     page = request.args.get('page', 1, type=int)
     if topic == 'Undefined':
-        posts = Post.query.filter_by(topic='').order_by(Post.date_posted.desc()).paginate(page=page, per_page=10)
+        posts = Post.query.filter_by(topic='').order_by(Post.date_posted.desc()).paginate(page=page, per_page=15)
         return render_template('topic_channel.html', topic = 'Undefined', title = 'Misc', posts = posts)
-    posts = Post.query.filter_by(topic=topic).order_by(Post.date_posted.desc()).paginate(page=page, per_page=10)
+    posts = Post.query.filter_by(topic=topic).order_by(Post.date_posted.desc()).paginate(page=page, per_page=15)
     return render_template('topic_channel.html',topic = topic, title = topic, posts = posts)
 
 
@@ -39,3 +40,11 @@ def toggle_theme():
 @main.route("/license")
 def license():
     return render_template('license.html', title = 'License')
+
+# TODO:
+@main.route("/search=<string:query>", methods=['GET'])
+def search():
+    query = request.args.get('search')
+    page = request.args.get('page', 1, type = int)
+    results = search_db(query).paginate(page=page, per_page=15)
+    return render_template('search_results.html', query = query, posts = results)
