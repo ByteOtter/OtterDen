@@ -2,6 +2,11 @@
 
 ![The Otter Den](./logo-color.png)
 
+> A note on Python 3.11: It is not planned to make OtterDen work with Python 3.11 in the near future.
+>
+> Currently there seem to be issues wth some dependencies and Python 3.11 which I do not have the time at the moment
+> to fix.
+
 The Otter Den is a small and very simple flask-based online blog. Its purpose is *not* to be publicly deployed but
 to serve as a pet project to learn how various aspects of software development and programming work.<br>
 Further, The Otter Den will henceforth be referenced as OtterDen as this is less effort to type and it is a name
@@ -28,15 +33,16 @@ All of this is still heavily WIP and I will update this list if I have time.
 ## Contributing
 
 If you read this I assume I made this repository public. If you would like to help build OtterDen
-please check the [Issues](https://github.com/ByteOtter/OtterDen/issues) section where I have a list of bugs and future features.<br>
+please check the [Issues](https://github.com/ByteOtter/OtterDen/issues) section where I have a list of bugs and future 
+features.<br>
 Feel free to browse I am thankful for every contribution! :)
 
 Please refer to the [Contributing Guide](./docs/CONTRIBUTING.md) if you need any help.
 
 ## Security notice
 
-Please note that OtterDen **is not intended to be deployed in any capacity**. It is a learning project that is best hosted by
-the greatest hosting service ever: `localhost`.
+Please note that OtterDen **is not intended to be deployed in any capacity**. It is a learning project that is best 
+hosted by the greatest hosting service ever: `localhost`.
 
 Seriously, **security vulnarabilities are bound to be present**.
 
