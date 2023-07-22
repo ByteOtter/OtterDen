@@ -4,8 +4,8 @@
 
 > A note on Python 3.11: It is not planned to make OtterDen work with Python 3.11 in the near future.
 >
-> Currently there seem to be issues wth some dependencies and Python 3.11 which I do not have the time at the moment
-> to fix.
+> Currently there seem to be issues wth some dependencies and Python 3.11 which I do not have the time to fix
+> at the moment.
 
 The Otter Den is a small and very simple flask-based online blog. Its purpose is *not* to be publicly deployed but
 to serve as a pet project to learn how various aspects of software development and programming work.<br>
@@ -26,7 +26,7 @@ Features I have added since finishing the tutorial course include:
 - Set up selenium and behave testsuite to automate future testing
 - Tagging and filtering of posts
 - Rudimentary privacy options
-- Auto detectio of URLs in Posts
+- Auto detection of URLs in Posts
 
 All of this is still heavily WIP and I will update this list if I have time.
 
