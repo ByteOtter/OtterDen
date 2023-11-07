@@ -1,14 +1,14 @@
-OtterDen/otter_den/logBlogDEV.db
-OtterDen/__pycache__/
+src/otter_den/logBlogDEV.db
+src/__pycache__/
 
-OtterDen/otter_den/static/profile_pictures/*
-!OtterDen/otter_den/static/profile_pictures/default.jpg
+src/otter_den/static/profile_pictures/*
+src/otter_den/static/profile_pictures/default.jpg
 
-OtterDen/otter_den/static/posted_pictures/*
-!OtterDen/otter_den/static/posted_pictures/.gitkeep
+src/otter_den/static/posted_pictures/*
+!src/otter_den/static/posted_pictures/.gitkeep
 env/*
-OtterDen/otter_den/*/__pycache__/
-OtterDen/otter_den/__pycache__/
+src/otter_den/*/__pycache__/
+src/otter_den/__pycache__/
 testsuite/test_utils/__pycache__/
 testsuite/geckodriver.log
 migrations/__pycache__/
