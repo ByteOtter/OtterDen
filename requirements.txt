@@ -32,7 +32,7 @@ marshmallow==3.14.1
 outcome==1.2.0
 parse==1.19.0
 parse-type==0.6.0
-Pillow==9.3.0
+Pillow==10.0.1
 pycparser==2.21
 PyMySQL==1.0.2
 PySocks==1.7.1
